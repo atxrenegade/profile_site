@@ -100,7 +100,8 @@ img {
 a,
 a:hover,
 a:focus {
-    color: inherit;
+    color: blue;
+		text-decoration: underline solid blue;
 }
 
 
@@ -1858,6 +1859,6 @@ header .header-mobile .header-toggle i {
         padding: 0;
     }
     .portfolio-section .portfolio-filter ul {
-        border: none; 
+        border: none;
     }
 }
