@@ -104,7 +104,7 @@
 
                 <div class="blog-page">
                     <div class="blog-image">
-                      <img src='https://i0.wp.com/www.brainpickings.org/wp-content/uploads/2013/01/chickenegg1.jpg?w=300&ssl=1' alt='Chicken or the Egg' width='50%'>
+                      <img class='img-med' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.deccanchronicle.com%2Fsites%2Fdefault%2Ffiles%2Fchicken%2520or%2520egg_0_0_0.jpg&f=1&nofb=1' alt='Chicken or the Egg'>
                     </div>
                     <div class="blog-container">
                         <div class="row">
@@ -141,11 +141,11 @@
 															<p>Once the objects were created and I had created the search and list functions I noticed that they weren't really being displayed in any kind of order so I decide to create an alphabetize function to make it easier to visually digest.</p><br>
 
 															<h2>OBJECT DUPLICATION</h2><br>
-															<img src='http://www.vikrambedi.com/wp-content/uploads/2017/10/duplicate-content-image.jpg' alt='Duplicated Objects'><br><br><br>
+															<img class='img-med' src='http://www.vikrambedi.com/wp-content/uploads/2017/10/duplicate-content-image.jpg' alt='Duplicated Objects'><br><br><br>
 
 															<p>While testing out my List All Shortcuts function I discovered an interesting bug that puzzled me.  While my first OS displayed all the correct objects and values as requested, the second operating system returned all the requested objects plus a duplicate copy, and the third operating system seemed to return a triplicate copy of shortcut objects. Yet other times it seemed the program worked flawlessly.  This inconsistency stumped my even further. At the time of writing this I did not know what was causing this bug and it is the final unremaining detail in completing my project. Lightening strikes, as I type these letters I’ve had my ahhhaaa moment.</p><br>
 
-															<img src='http://www.clixmarketing.com/blog/wp-content/uploads/2015/05/homer-computer-doh.jpg' alt='DOH moments!'><br><br>
+															<img class='img-med' src='http://www.clixmarketing.com/blog/wp-content/uploads/2015/05/homer-computer-doh.jpg' alt='DOH moments!'><br><br>
 
 															<p>What would seemingly cause a correct number of objects to be displayed for the first OS, duplicate for the second, and triplicate for the third OS.  D’oh!  Could it be tied to the fact that my scraper is called AFTER the OS is selected, which MEANS it is being called for EACH TIME a new OS is selected creating yet another copy of each object EVERY TIME the scraper class is called.  I resolved this by moving the method call to the Scraper class from it's awkward position in the Main Menu to the CLIInterface initialize mthod where is would only be called once per program execution, this immediately corrected the issue.</p>
 
