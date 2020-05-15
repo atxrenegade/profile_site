@@ -104,6 +104,14 @@ a:focus {
 		text-decoration: underline solid blue;
 }
 
+pre {
+    font-size: 1em;
+    font-weight: bold;
+    color: maroon;
+    background-color: wheat;
+    
+}
+
 
 /************ Margin & Padding ************/
 
