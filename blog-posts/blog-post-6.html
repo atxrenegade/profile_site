@@ -130,12 +130,288 @@
                         
                             <br>
                             <p>Check back Friday, June 29th, 2020 for the full blog post!</p>
+                            <br>
+                            <h2>Correcting Distorted Mental Models</h2>
+                            <p>After discovering some misguided mental models in my understanding of some of the more opaque idiosyncrasies of
+                            JavaScript I was directed towards Kyle Simpson's infamous and invaluable series "You Don't Know JS" (specifically the
+                            'Scope and Closures' volume). I highly recommend a thorough consumption of each of these books to any developer who plans to spend any amount of time working with the rapidly transforming language of JavaScript for a solid grasp of some of these often misunderstood and miscommunicated concepts. I hope I can do it some justice in clarifying and communicating some of those concepts here.</p>
+                    
+                            <p>I am a full picture person, I retain details best when I have a complete picture, an aerial view, a deep exploration of low level concepts. But this is the real world and in development we often don't get time for contemplation and review, so I savor it when I can. Here's my Reader Digest version of mulling over Kyle's book(3 x for good measure), Stack Overflow posts, YouTube videos, Wikipedia (surprisingly), medium, Dev.to, GitHub repos and a dozen of other sources. Some of the specific misconceptions I was looking to clarify were hoisting, the use vs banishment of var, closures, and the mystical JIT compilation process. Much of what I discovered contradicted what I had originally been taught, but these new arguments were backed with compelling logic from experienced developers and convincing code samples that altered the way I view, and currently use JS language and features. So let's dive in.</p>
+                            <br>
+                            <h2>Compiled vs Interpreted</h2>
+                            <p>For machines to understand high level languages like JavaScript the code must be translated or complied into to machine code. Compilation is a process in which the compiler converts higher level source code into an machine language
+                            executable file in a build step before runtime. Interpreted languages are translated at runtime line by line while the source code is converted to machine code during execution. There are arguments for and against each format. Compiled
+                            code is faster to execute because the build step occurs prior to runtime, the entire program has already been checked for errors and the work of converting to machine code is already complete. Interpreted code is more flexible to correct, it runs line by line, often displaying errors as they occur, and takes less memory.</p>
+                            
+                            <p>But why do we care? Isn't JavaScript an interpreted language? It was... in the beginning, but modern day JavaScript engines use a refined combination of compilation and interpretation commonly referred to as just-in-time compilation (aka JIT compilation). Understanding the way our code is processed during compilation and execution will help us get a clearer understanding of scopes, variables and their behavior, and of when these objects are determined and available for use in our code. By having a deeper understanding of these concepts we can use this knowledge to replace
+                            memorization of misleading, incomplete, and outdated mental models. Remember these are highly level summaries of complex processes simplified for basic comprehension.</p>
+                            <br>
+                            <h2> JS Engine and the Runtime Environment</h2>
+                            <p>There are two important components involved at runtime, the JavaScript engine, and the runtime environment that the
+                            engine operates within. Each browser uses it's own engine as they compete for speed and efficiency. You've probably
+                            heard of the popular ones, V8 for Google Chrome, Karma for Internet Explorer, Nitro for Safari and Firefox( Developer
+                            Edition - my personal preference) uses Spider Monkey. While JS can still be executed with an interpreter, it is more commonly processes by these browsers and their fine tuned engines using complex processes for asynchronously compiling, optimizing and executing source code through multiple threads within the runtime environment.</p>
+                            
+                            <p>So what is the runtime environment? The runtime environment, is the environment that your code is executed in. It is generally the collection of libraries, tools, and support systems available within the runtime space. Some of these
+                            tools and services include the server environment, your desktop environment, the browser, the js engine, the core
+                            library, etc.. This also where the event loop is implemented.</p>
+                            <br>
+                            <h2>Three Stage Compilation</h2>
+                            <p>Now that we understand that JS uses a combination of both compilation and interpretation known as "just in time
+                            compiling", we are going to take a closer look at the compilation phase to better understand scope and variable
+                            behavior. Again, compilation is preprocessing of source code into machine code, it is during this phase that JS engine creates a map of scopes and identifiers that determine the availability of our functions and variables. In JavaScript
+                            the compilation of our code occurs literal nanoseconds before the engines executes the translated code, so in order to facilitate this process it is broken down into three stages:</p>
+                            <ul>
+                                <li>&bull; Stage One: Tokenizing/Lexing</li>
+                                <li>&bull; Stage Two: Parsing</li>
+                                <li>&bull; Stage three: Code Generation</li>
+                            </ul>
+                            <p>In the first stage of compilation, lexical analysis and tokenizing refers to the process in which the engine analyzes our syntax and breaks it down into 'tokens'. Tokens are just strings with assigned meanings we recognize them as identifiers, keywords, operators, literals, comments, etc.  Once the source code has been lexed/tokenized, the engine parses the code to create an abstract tree representation (AST). The AST is a data structure that tells our compiler...</p>
+
+                            <!--- insert the rest of the blog post here!        -->
+                            <br>
+                            <h2>This, This, This or This</h2>
+                            
+                            <p>The use of the keyword this is a concept that often trips up and mystifies new developers. The common misconception is that THIS is a reference to the function itself, OR to the lexical scope of the function being called on the THIS object, but THIS is actually a runtime binding determined by the call site that creates an execution context for the life of that THIS instance. In other words THIS is kind of like a post-it note we stick to a js object to let our program know what THIS is referring to. In order to determine what THIS is referring to, we need to examine the point in our code where our THIS was attached to our object, aka the call site. There are multiple ways to configure our THIS binding, and since more that one determining variation can appear at the same call site, we need to recognize and understand the hierarchy that applies when to the THIS binding rules. In order from highest precedence to lowest precedence the four rules for determining what our THIS binding context is are:</p> 
+                            <ol>
+                                <li>The NEW constructor keyword</li>
+                                <li>explicit binding</li>
+                                <li>implicit binding</li> 
+                                <li>default binding</li>
+                            </ol>
+                            <p>Let's explore how each of these execution contexts are
+                            determined and the syntax used to implement them.</p>
+                            
+                            <h3>THIS by Default</h3>
+                            
+                            <p>Starting from the bottom up, the default rule is in effect when none of the other cases apply to our call site. If our THIS instance is not using implicit or explicit binding, or the NEW constructor keyword, then the default THIS behavior will be determined by whether or not the CONTENTS of the function are running in strict mode. If strict mode has not been applied to our function then our THIS binding will refer to the global object. If our function IS running in strict mode then the global object becomes unavailable and the value of THIS is set to 'undefined';</p>
+                            
+                            ```
+                            code sample - use strict
+                            code sample - non use strict
+                            
+                            ```
+                            
+                            <h3>Implicitly THIS</h3>
+                            how can I describe implicit this?
+                            
+                            what are the benefits and use cases for bind(), call(), and apply()
+                            how are they unintentionally reset()?
+                            
+                            Implicit execution contexts are determined by
+                            
+                            
+                            
+                            <p>Word of caution with the use of implicit binding, object often lose their implicit bindings when they are
+                            unintentionally reset to the default binding, we can avoid this by creating hard bindings with explicit context with the bind() function.</p>
+                            
+                            
+                            implicit code sample
+                            
+                            <h3>Explicitly THIS - Bind, Call and Apply</h3>
+                            <p>THIS can be explicitly set to the object of our choice by using one of three popular methods bind(), call(), or apply().  Each of these important tools work similarly with slight variations in parameter expectations and return values. The first parameter passe into each of these functions will be the object we intend to explicitly set as our execution context. If you decide to pass in a primitive value (such a string or integer) instead the value will be auto-boxed to create the object parameter is the function expects. Autoboxing is when we pass a primitive data type like an integer or a string into a method that is expecting and object and it automatically 'wraps; our argument in an object for us.</p>
+                            
+                            Autoboxing syntax example
+                            
+                            <p>The call() method takes two or more parameters as an argument list, the first parameter is the THIS context we are explicitly binding to the call method, and the remaining parameters are the arguments we would like to pass into the call() method which immediately invokes the function being called with these arguments.</p>
+                            
+                            <p>The apply() method is virtually identical to the call() and is also used to explicitly bind our execution context to our object and pass arguments to a function being executing on the specified object, the ONLY difference between call() and apply(), is that instead of accepting multiple parameters for additional arguments, the apply() method takes this additional parameters as a single array; The return values for call and apply is the result of the method called on on our bound object with the specified parameters.</p>
+                            
+                            <p>The bind() method is a another close, relative of call() and apply(). It is also used to explicitly bind our THIS
+                            context and the first parameter is again our intended object for execution context, and the following parameters are again a list of arguments we are passing to the function being invoked, but instead of being invoked immediately as with call() and apply(), a new function is created and returned with the provided parameters hard coded into the newly created function(aka as 'hard binding') the argument list while passed into the new function before any new arguments passed in at execution time.</p>
+                            
+                            <p>These functions are useful when we want to create methods that can be used on different objects that we can bind to upon and invoking and when we want to call a method on our object without mutating the original.??XXXXXXX (did I make this up?)</p>
+                            
+                            <pre></pre>
+                            explicit code sample
+                            
+                            <h3>A brand NEW THIS</h3>
+                            <p>The easiest rule to identify is the use of the NEW constructor. The NEW keyword creates a new javascript object that THIS binds to for the duration of the constructor call. These will return our newly created objects automatically unless another return value has been specified.</p>
+                            
+                            new code sample
+                            
+                            <p>To review the order of rules determining precedence for our THIS binding from highest to lowest:</p>
+                            <ol>
+                            <li>The NEW constructor keyword</li>
+                            <li>EXPLICIT binding - using bind(), call(), or apply() to set our THIS context</li>
+                            <li>IMPLICIT binding - look to the left to determine ownership</li>
+                            <li>DEFAULT binding - global object or undefined (strict vs non-strict mode)</li>
+                            </ol>
+                            <br>  
+                            <h2> ES Modules and the Module Pattern </h2>
+                            <p>In early days of web programming, when the internet still consisted of primarily static web pages, js code was limited to single lines embedded in html to assemble web components.(-XXX confirm this) As it has slowly taken on a new role and expanded functionality to both front and back end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our js files expand in size breaking code down into modules allow us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces. </p>
+                            
+                            <h3> The Classic Module pattern ********* TO DO</h3>
+                            //what is the Common JS format used for, origination, what //is the AMD and UMD format used for, origination
+                            
+                            //why was ES created? TO DO
+                            //The classic module pattern - use and origination - TO DO
+                            //modules - grouping, state, access control to private data
+                            <br>
+                            </p>In order a for module to fit the characteristics of the classic module pattern Kyle Simpson (You Don't Know JS) reminds
+                            us that it display the following characteristics:</p>
+                            <ol>
+                                <li>An outer scope from that runs at least once, </li>
+                                <li>An inner scope that has at least one piece of hidden information</li>
+                                <li>Must return a reference to at least one function that has closure over a hidden module state</li>
+                            </ol>
+                            
+                            <p>Below is a syntax example I have create of the classic module pattern in from my experimental app for scopes modules and closures, it includes the use of a function expression storing an IIFE that returns a public interface through its inner function by uses closure to make the return object keys storing stateful data.</p>
+                            <br>
+                            <pre>
+                            // ./modules/cache.js
+                            
+                            const CACHE = (function setCACHE(data) {
+                            var cache = {};
+                            function cacheData(data, cacheName) {
+                            if (data) { cache[cacheName] = data };
+                            return cache[cacheName];
+                            };
+                            
+                            return {
+                            totalPrice: function (data) { return cacheData(data, 'totalPrice') },
+                            taxRate: function (data) { return cacheData(data, 'taxRate') },
+                            element: {
+                            price: document.getElementById('cost-num')
+                            }
+                            }
+                            })();
+                            
+                            export { CACHE };
+                            
+                            // main.js
+                            import { CACHE } from "./modules/cache.js";
+                            </pre>
+                            <br>
+                            <h3>ES Modules</h3>
+                            <p>Prior to ES6 Javascript did not have Built-in modules. While other popular formats had evolved and developed such as the Common JS Module for Node Developers, and the AMD andUMD for and IIFE's.---XXxxxxxxx finish this sentence</p>
+                            
+                            <p>ES Modules became the standardized format that has found gradual support across the browser landscape. As of 2020 the only browser still lagging in ES module support are: Opera, Internet Explorer, and a few less commonly known and used browsers.</p>
+                            
+                            <p>ESMs are fairly simple and include 3 primary components, an export statement in the file containing module to be exported, an import statement in the top level js file that we are importing to, and a module script statement to be include in the html file. ES Modules do not require Immediately Invoked Function, or any fancy or mystical syntax.</p>
+                            </p>Modules are singletons no matter how many times they are imported/exported only one instance is created at the top scope level, because ES modules are automatically created in 'strict-mode' and declarations are scoped to modules and not visible globally. Because modules are operating in strict mode and not available globally, this may limit accessibility to module features in the console and limit debugging capabilities for these objects.</p>
+                            
+                            </p>There are several formats for including these three steps in our code, each with minor variations in syntax and
+                            functionality. Named exports are the most straightforward use of ES modules. This es module syntax is useful for
+                            exporting/importing multiple objects from one file and to the top level js file of a program using the example shorthand syntax below. Don't forget we need to include the following three steps in any module variation: load the module file with a script tag in our html file, export the module using one of the es module variations, import the module into our top level file.</p>
+                            <br>
+                            <pre>
+                            // Named exports:
+                            
+                            // modules/localStorage.js'
+                            export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
+                            
+                            // js/main.js
+                            import { createNewList, buildSavedList, returnSavedList, manageGroceryList } from './modules/localStorage.js';
+                            
+                            // index.html
+                            <script type="module" src="localStorage.js"></script>
+                            </pre>
+                            <h3>Default Exports</h3>
+                            <p>Another variation of ES Modules is to use default exports. Default export we created to cooperate with UMD and Common JS modules. This syntax will only export ONE object per file.</p>
+                            <br>
+                            <pre>
+                            // Default Exports:
+                            
+                            // js/modules/localStorage.js'
+                            export default newList;
+                            
+                            // js/main.js
+                            import newList from './modules/localStorage.js';
+                            </pre>
+                            <br>
+                            
+                            <h3>Renaming Exports</h3>
+                            <p>Sometimes to avoid naming collisions we may have to rename our modules upon export:</p>
+                            <br>
+                            <pre>
+                            // Renaming Module Exports
+                            
+                            // js/modules/localStorage.js'
+                            export {
+                            createNewList as newList,
+                            buildSavedList as savedList
+                            };
+                            
+                            // js/main.js
+                            import { newList, savedList } from './modules/localStorage.js';
+                            </pre>
+                            <br>
+                            <h3>Renaming Imports</h3> 
+                            <p>ES6 has also provided us an option to alternatively rename modules upon import if we prefer:</p>
+                            <br>
+                            <pre>
+                            // Renaming Module Imports
+                            
+                            // js/modules/localStorage.js'
+                            export { createNewList, buildSavedList };
+                            
+                            // js/main.js
+                            import {
+                            createNewList as newList,
+                            buildSavedList as savedList
+                            } from './modules/localStorage.js';
+                            </pre>
+                            <br>
+                            <h3> Module Objects</h3>
+                            <p>The final module variation will will explore is the creating module objects. Using module object we include or named exports in our export file, and import everything, and reference our exported objects as properties of the imported module</p>
+                            <br>
+                            <pre>
+                                // Creating Module Objects
+                                
+                                // js/modules/localStorage.js
+                                export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
+                                
+                                // js/main.js
+                                import * as Storage from './modules/localStorage.js';
+                                Storage.manageGroceryList('addItem', 'banana', 3);
+                            </pre>
+                            <br>
+                            <h2>Deeper Exploration</h2>
+                            <p>Whew. That was a lot to cover. If you are still here and want to explore these topic further I have two personal
+                            favorites I would like to share here, one specifically for in-depth exploration and another for the full breadth of web development and javascript topics. The first resource as I have already mentioned above is the "You Don't Know JS" series by Kyle Simpson, now into it's second edition. These books can be purchased in hardcover on Amazon.com, or
+                            digested for free electronically directly from the github repo: https://github.com/getify/You-Dont-Know-JS. While the
+                            majority of the material covered in this blog post was based on "Scopes and Closure", other titles include: "Async and Performance", "Es6 & Beyond", "This and Object Prototypes", "Types and Grammar", and more. Alternatively if video instruction is more your learning style Kyle has some notable intermediate and advanced JS classes at
+                            https://frontendmasters.com. The second resource is a github repo titled '33 Things Every Developer Should Know'. XXXadd link here XXX It is a thorough list of articles and video resources for exploring everything from to</p>
+                            
+                            <p>Good luck on your journey. I hope I was able to clarify some of these topics for you. If you found this blog post
+                            helpful please like it, or share it with other developers you think could benefit, and follow me on Dev.to or check out my online portfolio at <a href='http://www.harleighabel.com'>http://harleighabel.com</a></p>
 
                             <p>The repository for the code samples were extracted from can be found <a href='https://www.youtube.com/watch?v=S64JOX8x_K8'>here!</a><br>
-
+                            
                             A live demo of that application can be found <a href='https://www.joesgroceries.com'>here! </a>
-                            <br><br>    
+                            <br><br>
                             <a href='https://github.com/atxrenegade'>atxrenegade/Harleigh Abel</a></p><br>
+                            
+                            <h3>References:</h3>
+                            <p>All Things Javascript. “Function Declarations VS Function Expressions in JavaScript.” YouTube, 14 Oct. 2016,
+                            www.youtube.com/watch?v=gjLn95skIKE.</p>
+                            
+                            <p>Code With Mosh. “JavaScript This Keyword.” YouTube, 15 May 2018, www.youtube.com/watch?v=gvicrj31JOM. Accessed 25 May 2020.</p>
+                            
+                            <p>Griffith, Steve. “JS Function Methods Call( ), Apply( ), and Bind( ).” YouTube, 10 Oct. 2017, www.youtube.com/watch?v=uBdH0iB1VDM.</p>
+                            
+                            <p>“JavaScript Modules.” MDN Web Docs, developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules. Accessed 25 May 2020.</p>
+                            
+                            <p>“JavaScript Runtime.” MDN Web Docs, developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/JavaScript_runtime. Accessed 25 May 2020.</p>
+                            
+                            <p>Johansson, Mattias Petter. “JS Function Methods Call( ), Apply( ), and Bind( ).” YouTube, 10 Oct. 2017,
+                            www.youtube.com/watch?v=uBdH0iB1VDM. Accessed 25 May 2020.</p>
+                            
+                            <p>Maldonado, Leonardo. “Leonardomso/33-Js-Concepts.” GitHub, 24 May 2020, github.com/leonardomso/33-js-concepts. Accessed 25 May 2020.</p>
+                            
+                            <p>“Phases of Compiler with Example.” Guru99.Com, 10 Dec. 2019, www.guru99.com/compiler-design-phases-of-compiler.html.</p>
+                            
+                            <p>Roberts, Phillip. “What the Heck Is the Event Loop Anyway? | Philip Roberts | JSConf EU.” YouTube, 9 Oct. 2014, www.youtube.com/watch?v=8aGhZQkoFbQ. Accessed 25 May 2020.</p>
+                            
+                            Simpson, Kyle. “Getify/You-Dont-Know-JS.” GitHub, 25 May 2020, github.com/getify/You-Dont-Know-JS.</p>
+                            
+                            <p>Techsith. “Javascript Closure Tutorial ( Closures Explained ).” YouTube, 18 Nov. 2015,
+                            www.youtube.com/watch?v=71AtaJpJHw0. Accessed 25 May 2020.</p>
+                            
+                            <p>Wikipedia Contributors. “JavaScript.” Wikipedia, Wikimedia Foundation, 22 Mar. 2019, en.wikipedia.org/wiki/JavaScript.</p>
+                            
+                            <p>Zlatkov, Alexander. “How JavaScript Works: An Overview of the Engine, the Runtime, and the Call Stack.” Medium, 12 Dec. 2018, blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf. Accessed 25 May 2020.</p>
 
                             <img src='/img/blog/javascript2.jpg' alt='Coding in Javascript'>
                         </div>
