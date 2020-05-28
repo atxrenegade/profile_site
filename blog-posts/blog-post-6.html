@@ -193,18 +193,11 @@
                             ```
                             
                             <h3>Implicitly THIS</h3>
-                            how can I describe implicit this?
+                            <p>Implicit execution contexts are determined the same way the dot operator function call operated. When we call a function using the dot operator we look to the left of the dot to determine what object we are invoking the function on. In the case of implicit binding to the THIS keyword, we determine ownership of the execution context by investigating the call-site in the same way, in more complex cases where multiple properties are chained together only the last level, the final property is the determinant.</p>
                             
-                            what are the benefits and use cases for bind(), call(), and apply()
-                            how are they unintentionally reset()?
-                            
-                            Implicit execution contexts are determined by
-                            
-                            
-                            
-                            <p>Word of caution with the use of implicit binding, object often lose their implicit bindings when they are
-                            unintentionally reset to the default binding, we can avoid this by creating hard bindings with explicit context with the bind() function.</p>
-                            
+                            <p>Word of caution with the use of implicit bindings. This binding type easily falls back to the default object and
+                            unintentionally resets when it loses it implicit binding. We can prevent this by creating hard bindings with explicit
+                            context with the bind() function.</p>
                             
                             implicit code sample
                             
@@ -212,6 +205,9 @@
                             <p>THIS can be explicitly set to the object of our choice by using one of three popular methods bind(), call(), or apply().  Each of these important tools work similarly with slight variations in parameter expectations and return values. The first parameter passe into each of these functions will be the object we intend to explicitly set as our execution context. If you decide to pass in a primitive value (such a string or integer) instead the value will be auto-boxed to create the object parameter is the function expects. Autoboxing is when we pass a primitive data type like an integer or a string into a method that is expecting and object and it automatically 'wraps; our argument in an object for us.</p>
                             
                             Autoboxing syntax example
+
+                            <p>>These functions are useful when we want to create methods that can be used on different objects, they give us the control to specify what context we are binding the original method to, the initial arguments passed in to upon
+                            invocation, and the option to create a brand new method bound to our object through hard bindings without mutating the original object or function.</p
                             
                             <p>The call() method takes two or more parameters as an argument list, the first parameter is the THIS context we are explicitly binding to the call method, and the remaining parameters are the arguments we would like to pass into the call() method which immediately invokes the function being called with these arguments.</p>
                             
@@ -219,8 +215,6 @@
                             
                             <p>The bind() method is a another close, relative of call() and apply(). It is also used to explicitly bind our THIS
                             context and the first parameter is again our intended object for execution context, and the following parameters are again a list of arguments we are passing to the function being invoked, but instead of being invoked immediately as with call() and apply(), a new function is created and returned with the provided parameters hard coded into the newly created function(aka as 'hard binding') the argument list while passed into the new function before any new arguments passed in at execution time.</p>
-                            
-                            <p>These functions are useful when we want to create methods that can be used on different objects that we can bind to upon and invoking and when we want to call a method on our object without mutating the original.??XXXXXXX (did I make this up?)</p>
                             
                             <pre></pre>
                             explicit code sample
@@ -239,15 +233,11 @@
                             </ol>
                             <br>  
                             <h2> ES Modules and the Module Pattern </h2>
-                            <p>In early days of web programming, when the internet still consisted of primarily static web pages, js code was limited to single lines embedded in html to assemble web components.(-XXX confirm this) As it has slowly taken on a new role and expanded functionality to both front and back end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our js files expand in size breaking code down into modules allow us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces. </p>
+                            <p>In early days of web programming, when the internet still consisted of primarily static web pages, js code was limited to single lines embedded in html to assemble web components. As it has slowly taken on a new role and expanded functionality to both front and back end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our js files expand in size breaking code down into modules allow us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces. </p>
                             
-                            <h3> The Classic Module pattern ********* TO DO</h3>
-                            //what is the Common JS format used for, origination, what //is the AMD and UMD format used for, origination
-                            
-                            //why was ES created? TO DO
-                            //The classic module pattern - use and origination - TO DO
-                            //modules - grouping, state, access control to private data
-                            <br>
+                            <h3> The Classic Module Pattern</h3>
+                            <p>Prior to ES6 Javascript did not have built-in modules, and solutions such as the use of an IIFE, UMDs(Universal Module Definition), AMDs(Asynchronous Module Definition), the Common JS pattern, and module bundlers evolved out of necessity. Before the creation of native JS modules we had to rely on enclosing functions and closures using the classic module pattern to group similar functions, retain state with within them, and to control access to private user interfaces.</p>
+                        
                             </p>In order a for module to fit the characteristics of the classic module pattern Kyle Simpson (You Don't Know JS) reminds
                             us that it display the following characteristics:</p>
                             <ol>
@@ -256,43 +246,39 @@
                                 <li>Must return a reference to at least one function that has closure over a hidden module state</li>
                             </ol>
                             
-                            <p>Below is a syntax example I have create of the classic module pattern in from my experimental app for scopes modules and closures, it includes the use of a function expression storing an IIFE that returns a public interface through its inner function by uses closure to make the return object keys storing stateful data.</p>
+                            <p>Below is a syntax example I have create of the classic module pattern from my experimental app for scopes modules and closures, it includes the use of a function expression storing an IIFE that returns a public interface through its inner function by uses closure to make the return object keys storing stateful data.</p>
                             <br>
                             <pre>
-                            // ./modules/cache.js
                             
                             const CACHE = (function setCACHE(data) {
-                            var cache = {};
-                            function cacheData(data, cacheName) {
-                            if (data) { cache[cacheName] = data };
-                            return cache[cacheName];
-                            };
+                                var cache = {};
+                                function cacheData(data, cacheName) {
+                                    if (data) { cache[cacheName] = data };
+                                    return cache[cacheName];
+                                };
                             
-                            return {
-                            totalPrice: function (data) { return cacheData(data, 'totalPrice') },
-                            taxRate: function (data) { return cacheData(data, 'taxRate') },
-                            element: {
-                            price: document.getElementById('cost-num')
-                            }
-                            }
+                                return {
+                                    totalPrice: function (data) { return cacheData(data, 'totalPrice') },
+                                    taxRate: function (data) { return cacheData(data, 'taxRate') },
+                                    element: {
+                                        price: document.getElementById('cost-num')
+                                    }
+                                }
                             })();
-                            
-                            export { CACHE };
-                            
-                            // main.js
-                            import { CACHE } from "./modules/cache.js";
+
+                            CACHE.totalPrice(2.33);
+
                             </pre>
                             <br>
                             <h3>ES Modules</h3>
-                            <p>Prior to ES6 Javascript did not have Built-in modules. While other popular formats had evolved and developed such as the Common JS Module for Node Developers, and the AMD andUMD for and IIFE's.---XXxxxxxxx finish this sentence</p>
-                            
-                            <p>ES Modules became the standardized format that has found gradual support across the browser landscape. As of 2020 the only browser still lagging in ES module support are: Opera, Internet Explorer, and a few less commonly known and used browsers.</p>
+                            <p>Since ES built-in modules were introduced in ES6 they have slowly found support across the browser landscape as they become the standardized native module format for javascript development. As of 2020 the only browsers still lagging in adopting ES modules are: Opera, Internet Explorer, and a few less commonly known and used outliers.</p>
                             
                             <p>ESMs are fairly simple and include 3 primary components, an export statement in the file containing module to be exported, an import statement in the top level js file that we are importing to, and a module script statement to be include in the html file. ES Modules do not require Immediately Invoked Function, or any fancy or mystical syntax.</p>
+
                             </p>Modules are singletons no matter how many times they are imported/exported only one instance is created at the top scope level, because ES modules are automatically created in 'strict-mode' and declarations are scoped to modules and not visible globally. Because modules are operating in strict mode and not available globally, this may limit accessibility to module features in the console and limit debugging capabilities for these objects.</p>
                             
-                            </p>There are several formats for including these three steps in our code, each with minor variations in syntax and
-                            functionality. Named exports are the most straightforward use of ES modules. This es module syntax is useful for
+                            </p>There are several variations including these three steps in our code, each with minor variations in syntax and
+                            functionality. Named exports are the most straightforward use of ES modules. This ES module syntax is useful for
                             exporting/importing multiple objects from one file and to the top level js file of a program using the example shorthand syntax below. Don't forget we need to include the following three steps in any module variation: load the module file with a script tag in our html file, export the module using one of the es module variations, import the module into our top level file.</p>
                             <br>
                             <pre>
@@ -329,8 +315,8 @@
                             
                             // js/modules/localStorage.js'
                             export {
-                            createNewList as newList,
-                            buildSavedList as savedList
+                                createNewList as newList,
+                                buildSavedList as savedList
                             };
                             
                             // js/main.js
@@ -341,16 +327,16 @@
                             <p>ES6 has also provided us an option to alternatively rename modules upon import if we prefer:</p>
                             <br>
                             <pre>
-                            // Renaming Module Imports
-                            
-                            // js/modules/localStorage.js'
-                            export { createNewList, buildSavedList };
-                            
-                            // js/main.js
-                            import {
-                            createNewList as newList,
-                            buildSavedList as savedList
-                            } from './modules/localStorage.js';
+                                // Renaming Module Imports
+                                
+                                // js/modules/localStorage.js'
+                                export { createNewList, buildSavedList };
+                                
+                                // js/main.js
+                                import {
+                                    createNewList as newList,
+                                    buildSavedList as savedList
+                                } from './modules/localStorage.js';
                             </pre>
                             <br>
                             <h3> Module Objects</h3>
