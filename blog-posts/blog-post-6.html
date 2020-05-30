@@ -232,6 +232,22 @@
                             <li>DEFAULT binding - global object or undefined (strict vs non-strict mode)</li>
                             </ol>
                             <br>  
+                            <h2>Closures</h2>
+                            <p>Closures are another foggy concept for many new developers, and can be a bit to wrap your head around at first. They seem to evade our traditional concepts of variable scope and lifecycle. Simply put closures are a way to maintain state and access variables from an external scope after the initial function call has completed. They can be used to separate methods and functions into private and public interfaces through encapsulation. Using closures narrows our function scope, creates code that is easier to read, and increases efficiency by allowing us to maintain state of a variable
+                            instead of having to recompute it for every instance, or alternatively having to keep track of, preserve and pass in a particular piece of data.</p>
+                            
+                            <p>Closures are a feature only available to functions, and are created by nesting one function within another, then by
+                            passing the nested function a variable and exposing this preserved data to an external scope in a return statement.</p>
+                            
+                            <p>Closures can only truly be defined as closures if they can be observed, which means that the variable maintaining state must be accessed from an external scope in order to create the intended and observable effect. Closures provide direct access to manipulate the variable itself, as they provide us access by reference not by value and as commonly misinterpreted.</p>
+                            
+                            <p>Kyle Simpson's mental model in "You Dont KNow JS: Scopes and Closure" most accurately describes closures as: "a function instance and its scope environment
+                            preserved in-place while any references or variables to it are passed around and invoked from other scopes."</p>
+                            
+                            Closure syntax example
+                            
+                            <p>Quick review: outer function, nested inner function, variable passed from outer function to inner function to maintain state, inner function exposes variable through return statement, scope external to outer function accesses inner data and variables. So now that we've explore closures understand lets move on to modules.</p>
+                            <br>
                             <h2> ES Modules and the Module Pattern </h2>
                             <p>In early days of web programming, when the internet still consisted of primarily static web pages, js code was limited to single lines embedded in html to assemble web components. As it has slowly taken on a new role and expanded functionality to both front and back end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our js files expand in size breaking code down into modules allow us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces. </p>
                             
