@@ -129,7 +129,7 @@
                             </ul>
                         
                             <br>
-                            <p>Check back Friday, June 29th, 2020 for the full blog post!</p>
+                            <p>Check back Monday, June 1st, 2020 for the full blog post!</p>
                             <br>
                             <h2>Correcting Distorted Mental Models</h2>
                             <p>After discovering some misguided mental models in my understanding of some of the more opaque idiosyncrasies of
@@ -167,6 +167,26 @@
                                 <li>&bull; Stage three: Code Generation</li>
                             </ul>
                             <p>In the first stage of compilation, lexical analysis and tokenizing refers to the process in which the engine analyzes our syntax and breaks it down into 'tokens'. Tokens are just strings with assigned meanings we recognize them as identifiers, keywords, operators, literals, comments, etc.  Once the source code has been lexed/tokenized, the engine parses the code to create an abstract tree representation (AST). The AST is a data structure that tells our compiler...</p>
+                            <br>
+                            <h2>Principle of Least Exposure</h2>
+                            <p>The Principle of Least Exposure(POLE) is a variation(or extension?)of the POLP principle (The principle of Least
+                            Privilege). It argues that function and variable access should be restricted to only to the parts of the program for which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier
+                            updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available using functions, blocks and IIFE's (Immediately Invoked Function Expressions) resulting in greater program stability, reducing the chance of naming collisions or unintended dependency, or unexpected side effects.</p>
+                            <br>
+
+                            <h2>Scope and Variable Types</h2>
+                            <h3>The Case for Var</h3>
+                            <p>As a new js developer I was also steered away from the use of the var variable type, and really didn't understand it myself. I "knew" that it was labelled legacy code, the black sheep in the js family that insisted on creating
+                            unpredictable bugs through a behavior called "hoisting". Beyond that I didn't really understand it, and was instructed to stick with const for all variable instances with the occasional use of let. I personally found const to be unpredictable and deceiving, claiming to be immutable yet still alterable, so steering clear of the trickery and deceit of both const and var, I defaulted to seeming safe solution of the neutral let variable type for nearly every variable I declared. Gaining a better understand of how this variables work has completely changed how I use variable declarators but before we get into the behavioral differences, let's review them.</p>
+
+                            <p>Let me re-introduce you to var perhaps you also got off on the wrong foot. Var is a sturdy variable declarator that
+                            originated in first xxxx of JS, and up until ES5 or 6? was the only flavor of JS variable came in. Var variables attach to the nearest function scope to create function scoped variables. Var is a visible differentiator from let and const in programs helping us separating function and block scoped variables from each other at a glance. Re-declaration of var within the same scope has zero effect, making it a useful variable as a semantic reminder when there is visible distance between our original var declaration and the variable assignment, or it's use in our code. Var is also the preferred variable for for global variables, and for declaring a variable inside a loop that also also needs to be accessed externally without creating a separation between declaration and use.</p>
+
+                            <h3>Reviewing Let </h3>
+                            <p>The let keyword acts very similarly to var. Let is also used to declare mutable variables and attaches to the nearest block scope. Let was introduced with Const in ES6 prior to that block scoping in JS did not exist. On to const.</p>
+
+                            <h3>Downgrading Const</h3>
+                            <p>Const is reserved for declaring static variables and cannot be reassigned. Due to const's inflexibility it is best used for variables like fixed strings, or numbers. Because const cannot be reassigned, it cannot be declared without assignment, attempting to do so will result in a Syntax Error.</p>
 
                             <!--- insert the rest of the blog post here!        -->
                             <br>
@@ -206,8 +226,8 @@
                             
                             Autoboxing syntax example
 
-                            <p>>These functions are useful when we want to create methods that can be used on different objects, they give us the control to specify what context we are binding the original method to, the initial arguments passed in to upon
-                            invocation, and the option to create a brand new method bound to our object through hard bindings without mutating the original object or function.</p
+                            <p>These functions are useful when we want to create methods that can be used on different objects, they give us the control to specify what context we are binding the original method to, the initial arguments passed in to upon
+                            invocation, and the option to create a brand new method bound to our object through hard bindings without mutating the original object or function.</p>
                             
                             <p>The call() method takes two or more parameters as an argument list, the first parameter is the THIS context we are explicitly binding to the call method, and the remaining parameters are the arguments we would like to pass into the call() method which immediately invokes the function being called with these arguments.</p>
                             
