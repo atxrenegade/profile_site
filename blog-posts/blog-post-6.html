@@ -127,9 +127,7 @@
                                 <li>&bull;The Principle of Least Exposure (POLE)</li>
                                 <li>&bull;Review of the Classic Module Pattern and the ES Module Format</li>
                             </ul>
-                        
-                            <br>
-                            <p>Check back Monday, June 1st, 2020 for the full blog post!</p>
+                    
                             <br>
                             <h2>Correcting Distorted Mental Models</h2>
                             <p>After discovering some misguided mental models in my understanding of some of the more opaque idiosyncrasies of
@@ -237,13 +235,13 @@
                             <br>
                             <h2>Principle of Least Exposure</h2>
                             <p>The Principle of Least Exposure(POLE) is a variation(or extension?)of the POLP principle (The principle of Least
-                            Privilege). It argues that function and variable access should be restricted to only to the parts of the program for which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available using functions, blocks and IIFE's (Immediately Invoked Function Expressions) resulting in greater program stability, reducing the chance of naming collisions or unintended dependency, or unexpected side effects.</p>
+                            Privilege). It argues that function and variable access should be restricted to only to the parts of the program for which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available using functions, blocks and IIFE's (Immediately Invoked Function Expressions) resulting in greater program stability, reducing the chance of naming collisions, unintended dependency, or unexpected side effects.</p>
+                            
+                            <p>Since our quick journey into how the JS engine compiles and interprets our program, we know that scope is determined during the lexing phase of the compilation stage. We've reviewed what types of variables can be created, and what levels of scope are available. Now lets look at how our variable types determine what scope the compiler will create for our variables.</p>
                             <br>
-
                             <h2>Scope and Variable Types</h2>
 
                             <h3>Reintroducing Var</h3>
-                
                             <p>As a new js developer I was also steered away from the use of the var variable type, and really didn't understand it myself. I "knew" that it was labelled legacy code, the black sheep in the js family that insisted on creating
                             unpredictable bugs through a behavior called "hoisting". Beyond that I didn't really understand it, and was instructed to stick with const for all variable instances with the occasional use of let. I personally found const to be unpredictable and deceiving, claiming to be immutable yet still alterable, so steering clear of the trickery and deceit of both const and var, I defaulted to seeming safe solution of the neutral let variable type for nearly every variable I declared. Gaining a better understand of how this variables work has completely changed how I use variable declarators but before we get into the behavioral differences, let's review them.</p>
 
@@ -255,20 +253,8 @@
                             <h3>Downgrading Const</h3>
                             <p>Const is reserved for declaring static variables and cannot be reassigned. Due to const's inflexibility it is best used for variables like fixed strings, or numbers. Because const cannot be reassigned, it cannot be declared without assignment, attempting to do so will result in a Syntax Error.</p>
 
-                            ## Principle of Least Exposure
-                            
-                            The Principle of Least Exposure(POLE) is a variation(or extension?)of the POLP principle (The principle of Least
-                            Privilege). It argues that function and variable access should be restricted to only to the parts of the program for
-                            which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we
-                            can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier
-                            updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available using
-                            functions, blocks and IIFE's (Immediately Invoked Function Expressions) resulting in greater program stability, reducing
-                            the chance of naming collisions, unintended dependency, or unexpected side effects.
-                            
-                            Since our quick journey into how the JS engine compiles and interprets our program, we know that scope is determined
-                            during the lexing phase of the compilation stage. We've reviewed what types of variables can be created, and what levels
-                            of scope are available. Now lets look at how our variable types determine what scope the compiler will create for our
-                            variables.
+                            <h3>Variable Behavior and the Dead Zone</h3>
+
                             <figure>
                                 <img src="/img/blog/deadzonetitle.jpg" alt='Dead Zone Logo as representation of The Temporal Dead Zone'>
                                 <figcaption>Stephen King's infamous novel The Dead Zone as a reminder of the Temporal Dead Zone </figcaption>
