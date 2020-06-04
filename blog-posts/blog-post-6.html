@@ -285,28 +285,28 @@
 
                             <pre>
 
-                            // VARIABLE HOISTING 
+    // VARIABLE HOISTING 
 
-                            console.log(varVariable);
-                            var varVariable = 'Im a var!';
-                                
-                            $=>
-                            undefined
-                            
-                            
-                            console.log(letVariable);
-                            let letVariable = 'Im a let!';
-                            
-                            $=>
-                            Uncaught ReferenceError: can't access lexical declaration 'letVariable' before initialization
-                            
-                            
-                            console.log(constVariable);
-                            const constVariable = 'Im a const';
-                            
-                            $=>
-                            Uncaught ReferenceError: can't access lexical declaration 'constVariable' before initialization
-                            
+    console.log(varVariable);
+    var varVariable = 'Im a var!';
+        
+    $=>
+    undefined
+    
+    
+    console.log(letVariable);
+    let letVariable = 'Im a let!';
+    
+    $=>
+    Uncaught ReferenceError: can't access lexical declaration 'letVariable' before initialization
+    
+    
+    console.log(constVariable);
+    const constVariable = 'Im a const';
+    
+    $=>
+    Uncaught ReferenceError: can't access lexical declaration 'constVariable' before initialization
+    
 
                             </pre>
                             <br>
@@ -329,24 +329,24 @@
 
                             <pre>
 
-                            // legal variable shadowing
-                            
-                            var shadowedVariable = "I'm the original unshadowed value!";
-                            
-                            function shadowOuterScopeVariable(someParameters){
-                                var shadowedVariable = "Now I'm Shadowed!";
-                                console.log('Here are some parameters: ' + someParameters);
-                                console.log(shadowedVariable);
-                            }
-                            
-                            console.log(shadowedVariable);
-                            shadowOuterScopeVariable('abcdefg');
-                            
-                            $=>
-                            I'm the original unshadowed value!
-                            Here are some parameters: abcdefg
-                            Now I'm Shadowed!
-                            
+    // legal variable shadowing
+    
+    var shadowedVariable = "I'm the original unshadowed value!";
+    
+    function shadowOuterScopeVariable(someParameters){
+        var shadowedVariable = "Now I'm Shadowed!";
+        console.log('Here are some parameters: ' + someParameters);
+        console.log(shadowedVariable);
+    }
+    
+    console.log(shadowedVariable);
+    shadowOuterScopeVariable('abcdefg');
+    
+    $=>
+    I'm the original unshadowed value!
+    Here are some parameters: abcdefg
+    Now I'm Shadowed!
+    
 
                             </pre>
                             <br>
@@ -364,58 +364,58 @@
                             <pre>
                                
 
-                            // FUNCTION TYPES
-                            
-                            // function declaration
+// FUNCTION TYPES
 
-                            function manageTableTotals() {
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }
+// function declaration
 
-                            // function expression(named)
-                            
-                            var manageTableTotals = function getPriceAndCount(){
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }
-                            
-                            // function expression(unnamed)
+function manageTableTotals() {
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}
 
-                            var manageTableTotals = function(){
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }
-                            
-                            // anonymous function
-                            function(){
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }
-                            
-                            // arrow function
-                            var manageTableTotals = () => {
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }
-                            
-                            // immediately invoked function expression
-                            var addButtonListeners = (function() {
-                                var numsArray = filterListForSelected(collectCheckedBoxes());
-                                updateDOMTotalPrice(totalPrice(numsArray));
-                                updateDOMItemCount(countItems(numsArray));
-                                toggleTaxes(CACHE);
-                            }());
+// function expression(named)
+
+var manageTableTotals = function getPriceAndCount(){
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}
+
+// function expression(unnamed)
+
+var manageTableTotals = function(){
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}
+
+// anonymous function
+function(){
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}
+
+// arrow function
+var manageTableTotals = () => {
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}
+
+// immediately invoked function expression
+var addButtonListeners = (function() {
+    var numsArray = filterListForSelected(collectCheckedBoxes());
+    updateDOMTotalPrice(totalPrice(numsArray));
+    updateDOMItemCount(countItems(numsArray));
+    toggleTaxes(CACHE);
+}());
 
                             </pre>
                             <br>
@@ -439,18 +439,18 @@
 
                             <pre>
 
-                            // default THIS 
+    // default THIS 
 
-                            console.log(this);
-                            $=>
-                            Window
-                            
+    console.log(this);
+    $=>
+    Window
+    
 
-                            'use strict';
-                            console.log(this);
-                            $=>
-                            undefined
-                            
+    'use strict';
+    console.log(this);
+    $=>
+    undefined
+    
 
                             </pre><br>
                             
@@ -478,108 +478,108 @@
                             
                             <pre>
 
-                            /******************** apply() ************************/
+    /******************** apply() ************************/
 
-                            // object + array .apply()
+    // object + array .apply()
 
-                            // First we define our function that we would like to
-                            // bind our apply() object to
+    // First we define our function that we would like to
+    // bind our apply() object to
 
-                            function printSalesMessage(price, item){
-                                var message1 = `Hello ${this.name}, that will be $${price} ${this.currency}.\n`;
-                                var message2 = `Will you be paying for you ${item} with ${this.paymentForm}?`;
-                                console.log(message1 + message2);
-                            }
+    function printSalesMessage(price, item){
+        var message1 = `Hello ${this.name}, that will be $${price} ${this.currency}.\n`;
+        var message2 = `Will you be paying for you ${item} with ${this.paymentForm}?`;
+        console.log(message1 + message2);
+    }
 
-                            // Create the object that will be your THIS context
-                            // for the bind function apply()
-                            var user2 = { name: 'Josaia', currency: 'cad', paymentForm: 'PayPal'}
-
-
-                            // lets nest our argument array in a function so we know our .apply()
-                            // isn't just using lexical scope to reference these array values
-                            function returnParams(){
-                                var price = 2.34;
-                                var item = 'dive mask';
-                                return transactionDetails = [ price, item ];
-                            }
-                            var transactionDetails = returnParams();
-
-                            // Let's see that array
-                            console.log(transactionDetails);
-                            $=>
-                            [ 2.34, 'dive mask' ]
-                            
-
-                            // Now we will invoke apply() with our user object to bind as
-                            // our THIS context to as first parameter
-                            // and pass in remaining arguments array as our second parameter
-                            printSalesMessage.apply(user2, transactionDetails);
-
-                            $=>
-                            Hello Josaia, that will be $2.34 cad.
-                            Will you be paying for you dive mask with PayPal?
-                            
-
-                            /******************** call() ************************/
-
-                            // object + object .call()
-
-                            // First we define our function that we would like to
-                            // bind our call() object to
-
-                            function printSalesMessage(){
-                                var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
-                                var message2 = `Will you be paying for your ${item.name} with ${this.paymentForm}?`;
-                                console.log(message1 + message2);
-                            }
-
-                            // create the object we are binding to for our THIS context
-                            var user1 = { name: 'Harleigh', currency: 'mxd', paymentForm: 'credit card'}
-
-                            // define multiple parameters
-                            var transaction = { price: 2.34 }
-                            var item = { name: 'dive mask' };
-
-                            // invoke the call() with our user object to bind to as first parameter
-                            // pass in remaining arguments
-                            printSalesMessage.call(user1, transaction, item); //call
-
-                            Hello Harleigh, that will be $2.34 mxd.
-                            Will you be paying for your dive mask with credit card?
-                            
+    // Create the object that will be your THIS context
+    // for the bind function apply()
+    var user2 = { name: 'Josaia', currency: 'cad', paymentForm: 'PayPal'}
 
 
-                            /******************** bind() ************************/
+    // lets nest our argument array in a function so we know our .apply()
+    // isn't just using lexical scope to reference these array values
+    function returnParams(){
+        var price = 2.34;
+        var item = 'dive mask';
+        return transactionDetails = [ price, item ];
+    }
+    var transactionDetails = returnParams();
 
-                            // Here is our original function we will bind our user object to
-                            // and pass in transaction object
+    // Let's see that array
+    console.log(transactionDetails);
+    $=>
+    [ 2.34, 'dive mask' ]
+    
 
-                            function printSalesMessage(transaction){
-                                var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
-                                var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
-                                console.log(message1 + message2);
-                            }
+    // Now we will invoke apply() with our user object to bind as
+    // our THIS context to as first parameter
+    // and pass in remaining arguments array as our second parameter
+    printSalesMessage.apply(user2, transactionDetails);
 
-                            // Create the object that will be your THIS context
-                            // for the bind function call()
-                            var user3 = { name: 'Katie', currency: 'usd', paymentForm: 'debit' };
+    $=>
+    Hello Josaia, that will be $2.34 cad.
+    Will you be paying for you dive mask with PayPal?
+    
 
-                            // Create the argument parameters you are passing with your bound object
-                            var transaction = { price: 2.34, item: 'dive mask' };
+    /******************** call() ************************/
 
-                            // create a variable to store our new function
-                            // pass in object to bind to and function parameters
+    // object + object .call()
 
-                            var katieSaleMsg = printSalesMessage.bind(user3, transaction);
+    // First we define our function that we would like to
+    // bind our call() object to
 
-                            // execute the newly created function
+    function printSalesMessage(){
+        var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+        var message2 = `Will you be paying for your ${item.name} with ${this.paymentForm}?`;
+        console.log(message1 + message2);
+    }
 
-                            katieSaleMsg();
-                            $=>
-                            Hello Katie, that will be $2.34 usd.
-                            Will you be paying for you dive mask with debit?
-                            
+    // create the object we are binding to for our THIS context
+    var user1 = { name: 'Harleigh', currency: 'mxd', paymentForm: 'credit card'}
+
+    // define multiple parameters
+    var transaction = { price: 2.34 }
+    var item = { name: 'dive mask' };
+
+    // invoke the call() with our user object to bind to as first parameter
+    // pass in remaining arguments
+    printSalesMessage.call(user1, transaction, item); //call
+
+    Hello Harleigh, that will be $2.34 mxd.
+    Will you be paying for your dive mask with credit card?
+    
+
+
+    /******************** bind() ************************/
+
+    // Here is our original function we will bind our user object to
+    // and pass in transaction object
+
+    function printSalesMessage(transaction){
+        var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+        var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
+        console.log(message1 + message2);
+    }
+
+    // Create the object that will be your THIS context
+    // for the bind function call()
+    var user3 = { name: 'Katie', currency: 'usd', paymentForm: 'debit' };
+
+    // Create the argument parameters you are passing with your bound object
+    var transaction = { price: 2.34, item: 'dive mask' };
+
+    // create a variable to store our new function
+    // pass in object to bind to and function parameters
+
+    var katieSaleMsg = printSalesMessage.bind(user3, transaction);
+
+    // execute the newly created function
+
+    katieSaleMsg();
+    $=>
+    Hello Katie, that will be $2.34 usd.
+    Will you be paying for you dive mask with debit?
+    
                             </pre>
                             <br>
                             
@@ -589,36 +589,36 @@
                             <br>
                             <pre>
                                 
-                            // using the new constructor with the THIS keyword
-                            // to specify context
-                            function User(name, currency, paymentForm) {
-                                this.name = name;
-                                this.currency = currency;
-                                this.paymentForm = paymentForm;
-                                
-                                this.msg = function printSalesMessage(transaction){
-                                    var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
-                                    var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
-                                    console.log(message1 + message2);
-                                }
-                            }
-                                
-                            // create our object to bind THIS to using the new constructor
-                            var user1 = new User('Harleigh', 'mxd', 'credit card')
-                            
-                            // call a method on our new object bound to THIS
-                            var transaction1228 = {price: 2.34, item: 'dive mask'};
-                            user1.msg(transaction1228)
+    // using the new constructor with the THIS keyword
+    // to specify context
+    function User(name, currency, paymentForm) {
+        this.name = name;
+        this.currency = currency;
+        this.paymentForm = paymentForm;
+        
+        this.msg = function printSalesMessage(transaction){
+            var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+            var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
+            console.log(message1 + message2);
+        }
+    }
+        
+    // create our object to bind THIS to using the new constructor
+    var user1 = new User('Harleigh', 'mxd', 'credit card')
+    
+    // call a method on our new object bound to THIS
+    var transaction1228 = {price: 2.34, item: 'dive mask'};
+    user1.msg(transaction1228)
 
                             </pre>
                             <br>
                             
                             <p>To review the order of rules determining precedence for our THIS binding from highest to lowest:</p>
                             <ol>
-                            <li>The NEW constructor keyword</li>
-                            <li>EXPLICIT binding - using bind(), call(), or apply() to set our THIS context</li>
-                            <li>IMPLICIT binding - look to the left to determine ownership</li>
-                            <li>DEFAULT binding - global object or undefined (strict vs non-strict mode)</li>
+                                <li>The NEW constructor keyword</li>
+                                <li>EXPLICIT binding - using bind(), call(), or apply() to set our THIS context</li>
+                                <li>IMPLICIT binding - look to the left to determine ownership</li>
+                                <li>DEFAULT binding - global object or undefined (strict vs non-strict mode)</li>
                             </ol>
                             <br>  
                             <h2>Closures</h2>
@@ -637,35 +637,35 @@
                             
                             <pre>
 
-                            // example of closures
-                            
-                            var firstNum = 1;
-                            var secondNum = 2;
-                            var thirdNum = 3;
-                            var fourthNum = 4;
-                            
-                            function outerFunction(someArgs, someNum) {
-                                function innerFunction(x){
-                                    console.log(someArgs);
-                                    return x + someNum;
-                                }
-                                return innerFunction;
-                            }
-                            
-                            var variableEqualsFOUR = outerFunction('Hello, Gorgeous!', firstNum)
-                            
-                            var variableEqualsSIX = outerFunction('Hey, Smarty Pants!', secondNum)
-                            
-                            console.log(`This variable will hold the accumulated value: ` + variableEqualsFOUR(thirdNum));
-                            
-                            console.log(`This variable will hold the accumulated value: ` + variableEqualsSIX(fourthNum));
-                            
-                            $=>
-                            Hello, Gorgeous!
-                            This variable will hold the accumulated value: 4
-                            Hey, Smarty Pants!
-                            This variable will hold the accumulated value: 6
-                            
+    // example of closures
+    
+    var firstNum = 1;
+    var secondNum = 2;
+    var thirdNum = 3;
+    var fourthNum = 4;
+    
+    function outerFunction(someArgs, someNum) {
+        function innerFunction(x){
+            console.log(someArgs);
+            return x + someNum;
+        }
+        return innerFunction;
+    }
+    
+    var variableEqualsFOUR = outerFunction('Hello, Gorgeous!', firstNum)
+    
+    var variableEqualsSIX = outerFunction('Hey, Smarty Pants!', secondNum)
+    
+    console.log(`This variable will hold the accumulated value: ` + variableEqualsFOUR(thirdNum));
+    
+    console.log(`This variable will hold the accumulated value: ` + variableEqualsSIX(fourthNum));
+    
+    $=>
+    Hello, Gorgeous!
+    This variable will hold the accumulated value: 4
+    Hey, Smarty Pants!
+    This variable will hold the accumulated value: 6
+    
 
                             </pre>
                             <br>
@@ -701,23 +701,23 @@
                             <br><br>
                             <pre>
                             
-                            const CACHE = (function setCACHE(data) {
-                                var cache = {};
-                                function cacheData(data, cacheName) {
-                                    if (data) { cache[cacheName] = data };
-                                    return cache[cacheName];
-                                };
-                            
-                                return {
-                                    totalPrice: function (data) { return cacheData(data, 'totalPrice') },
-                                    taxRate: function (data) { return cacheData(data, 'taxRate') },
-                                    element: {
-                                        price: document.getElementById('cost-num')
-                                    }
-                                }
-                            })();
+    const CACHE = (function setCACHE(data) {
+        var cache = {};
+        function cacheData(data, cacheName) {
+            if (data) { cache[cacheName] = data };
+            return cache[cacheName];
+        };
+    
+        return {
+            totalPrice: function (data) { return cacheData(data, 'totalPrice') },
+            taxRate: function (data) { return cacheData(data, 'taxRate') },
+            element: {
+                price: document.getElementById('cost-num')
+            }
+        }
+    })();
 
-                            CACHE.totalPrice(2.33);
+    CACHE.totalPrice(2.33);
 
                             </pre>
                             <br>
@@ -734,16 +734,16 @@
                             <br>
                             <pre>
 
-                            // Named exports:
-                            
-                            // modules/localStorage.js'
-                            export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
-                            
-                            // js/main.js
-                            import { createNewList, buildSavedList, returnSavedList, manageGroceryList } from './modules/localStorage.js';
-                            
-                            // index.html
-                            <script type="module" src="localStorage.js"></script>
+    // Named exports:
+    
+    // modules/localStorage.js'
+    export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
+    
+    // js/main.js
+    import { createNewList, buildSavedList, returnSavedList, manageGroceryList } from './modules/localStorage.js';
+    
+    // index.html
+    <script type="module" src="localStorage.js"></script>
 
                             </pre>
                             <br>
@@ -753,13 +753,13 @@
                             <br>
                             <pre>
                                 
-                            // Default Exports:
-                            
-                            // js/modules/localStorage.js'
-                            export default newList;
-                            
-                            // js/main.js
-                            import newList from './modules/localStorage.js';
+    // Default Exports:
+    
+    // js/modules/localStorage.js'
+    export default newList;
+    
+    // js/main.js
+    import newList from './modules/localStorage.js';
                             </pre>
                             <br>
                             
@@ -768,16 +768,16 @@
                             <br>
                             <pre>
 
-                            // Renaming Module Exports
-                            
-                            // js/modules/localStorage.js'
-                            export {
-                                createNewList as newList,
-                                buildSavedList as savedList
-                            };
-                            
-                            // js/main.js
-                            import { newList, savedList } from './modules/localStorage.js';
+    // Renaming Module Exports
+    
+    // js/modules/localStorage.js'
+    export {
+        createNewList as newList,
+        buildSavedList as savedList
+    };
+    
+    // js/main.js
+    import { newList, savedList } from './modules/localStorage.js';
 
                             </pre>
                             <br>
@@ -786,16 +786,16 @@
                             <br>
                             <pre>
 
-                            // Renaming Module Imports
-                            
-                            // js/modules/localStorage.js'
-                            export { createNewList, buildSavedList };
-                            
-                            // js/main.js
-                            import {
-                                createNewList as newList,
-                                buildSavedList as savedList
-                            } from './modules/localStorage.js';
+    // Renaming Module Imports
+    
+    // js/modules/localStorage.js'
+    export { createNewList, buildSavedList };
+    
+    // js/main.js
+    import {
+        createNewList as newList,
+        buildSavedList as savedList
+    } from './modules/localStorage.js';
 
                             </pre>
                             <br>
@@ -805,14 +805,14 @@
                             <br>
                             <pre>
 
-                            // Creating Module Objects
-                            
-                            // js/modules/localStorage.js
-                            export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
-                            
-                            // js/main.js
-                            import * as Storage from './modules/localStorage.js';
-                            Storage.manageGroceryList('addItem', 'banana', 3);
+    // Creating Module Objects
+    
+    // js/modules/localStorage.js
+    export { createNewList, buildSavedList, returnSavedList, manageGroceryList };
+    
+    // js/main.js
+    import * as Storage from './modules/localStorage.js';
+    Storage.manageGroceryList('addItem', 'banana', 3);
 
                             </pre>
                             <br>
