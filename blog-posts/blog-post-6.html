@@ -120,12 +120,12 @@
 
                             <h4> Some of the topics explored in this post: </h4>
                             <ul><br>
-                                <li>&bull;Understanding Just-In-Time Compilation</li>
-                                <li>&bull;Exploring Scopes, Closures, Hoisting, and Shadowing</li>
-                                <li>&bull;Comparing Variable and Function Behavior and Types</li>
-                                <li>&bull;Implicit vs Explicit - Rules of Precedence for determining THIS</li>
-                                <li>&bull;The Principle of Least Exposure (POLE)</li>
-                                <li>&bull;Review of the Classic Module Pattern and the ES Module Format</li>
+                                <li>Understanding Just-In-Time Compilation</li>
+                                <li>Exploring Scopes, Closures, Hoisting, and Shadowing</li>
+                                <li>Comparing Variable and Function Behavior and Types</li>
+                                <li>Implicit vs Explicit - Rules of Precedence for determining THIS</li>
+                                <li>The Principle of Least Exposure (POLE)</li>
+                                <li>Review of the Classic Module Pattern and the ES Module Format</li>
                             </ul>
                     
                             <br><br>
@@ -424,7 +424,7 @@
                             <br>
                             
                             <p>The use of the keyword this is a concept that often trips up and mystifies new developers. The common misconception is that THIS is a reference to the function itself, OR to the lexical scope of the function being called on the THIS object, but THIS is actually a runtime binding determined by the call site that creates an execution context for the life of that THIS instance. In other words THIS is kind of like a post-it note we stick to a js object to let our program know what THIS is referring to. In order to determine what THIS is referring to, we need to examine the point in our code where our THIS was attached to our object, aka the call site. There are multiple ways to configure our THIS binding, and since more that one determining variation can appear at the same call site, we need to recognize and understand the hierarchy that applies when to the THIS binding rules. In order from highest precedence to lowest precedence the four rules for determining what our THIS binding context is are:</p> 
-                            <ol class='blog-list'>
+                            <ol>
                                 <li>The NEW constructor keyword</li>
                                 <li>explicit binding</li>
                                 <li>implicit binding</li> 
@@ -614,7 +614,7 @@
                             <br>
                             
                             <p>To review the order of rules determining precedence for our THIS binding from highest to lowest:</p>
-                            <ol class="blog-list">
+                            <ol>
                                 <li>The NEW constructor keyword</li>
                                 <li>EXPLICIT binding - using bind(), call(), or apply() to set our THIS context</li>
                                 <li>IMPLICIT binding - look to the left to determine ownership</li>
