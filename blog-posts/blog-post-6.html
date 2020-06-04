@@ -364,58 +364,58 @@
                             <pre>
                                
 
-// FUNCTION TYPES
+    // FUNCTION TYPES
 
-// function declaration
+    // function declaration
 
-function manageTableTotals() {
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}
+    function manageTableTotals() {
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }
 
-// function expression(named)
+    // function expression(named)
 
-var manageTableTotals = function getPriceAndCount(){
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}
+    var manageTableTotals = function getPriceAndCount(){
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }
 
-// function expression(unnamed)
+    // function expression(unnamed)
 
-var manageTableTotals = function(){
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}
+    var manageTableTotals = function(){
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }
 
-// anonymous function
-function(){
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}
+    // anonymous function
+    function(){
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }
 
-// arrow function
-var manageTableTotals = () => {
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}
+    // arrow function
+    var manageTableTotals = () => {
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }
 
-// immediately invoked function expression
-var addButtonListeners = (function() {
-    var numsArray = filterListForSelected(collectCheckedBoxes());
-    updateDOMTotalPrice(totalPrice(numsArray));
-    updateDOMItemCount(countItems(numsArray));
-    toggleTaxes(CACHE);
-}());
+    // immediately invoked function expression
+    var addButtonListeners = (function() {
+        var numsArray = filterListForSelected(collectCheckedBoxes());
+        updateDOMTotalPrice(totalPrice(numsArray));
+        updateDOMItemCount(countItems(numsArray));
+        toggleTaxes(CACHE);
+    }());
 
                             </pre>
                             <br>
