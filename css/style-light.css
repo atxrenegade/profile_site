@@ -107,9 +107,13 @@ a:focus {
 pre {
     font-size: 1em;
     font-weight: bold;
-    color: maroon;
-    background-color: wheat;
+    color: #357EC7;
+    background-color: black;
     
+}
+
+ol {
+    list-style-type: decimal;
 }
 
 
