@@ -460,7 +460,35 @@
                             unintentionally resets when it loses it implicit binding. We can prevent this by creating hard bindings with explicit
                             context with the bind() function.</p><br>
                             
-                            implicit code sample
+                            <pre>
+
+    // implicit THIS
+    
+    // Create a function to demonstrate our IMPLICIT this context
+    function printSalesMessage(transaction){
+        var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+        var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
+        console.log(message1 + message2);
+    }
+    
+    // Define parameters to pass in to function
+    var transaction9585 = { price: 2.34, item: 'dive mask' };
+    
+    // Define the object we will use for out THIS context
+    var user1 = { name: 'Anita', currency: 'gbp', paymentForm: 'cash on delivery' };
+    
+    // Call our function on our IMPLICIT THIS object
+    // Look to the left of the function for the subject
+    // of THIS context
+    user1.printSalesMessage(transaction9585);
+
+    $=>
+    Hello Anita, that will be $2.34 gbp.
+    Will you be paying for your dive mask with cash on delivery?
+    
+
+                            </pre>
+                            <br>
                             
                             <h3>Explicitly THIS - Bind, Call and Apply</h3><br>
                             <p>THIS can be explicitly set to the object of our choice by using one of three popular methods bind(), call(), or apply().  Each of these important tools work similarly with slight variations in parameter expectations and return values. The first parameter passe into each of these functions will be the object we intend to explicitly set as our execution context. If you decide to pass in a primitive value (such a string or integer) instead the value will be auto-boxed to create the object parameter is the function expects. Autoboxing is when we pass a primitive data type like an integer or a string into a method that is expecting and object and it automatically 'wraps; our argument in an object for us.</p>
