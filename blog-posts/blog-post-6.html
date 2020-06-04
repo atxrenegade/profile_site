@@ -282,6 +282,33 @@
 
                             <h3>Variable Behavior and the Dead Zone</h3>
 
+                            <pre>
+
+                                // VARIABLE HOISTING 
+
+                                console.log(varVariable);
+                                var varVariable = 'Im a var!';
+                                
+                                $=>
+                                undefined
+                                
+                                
+                                console.log(letVariable);
+                                let letVariable = 'Im a let!';
+                                
+                                $=>
+                                Uncaught ReferenceError: can't access lexical declaration 'letVariable' before initialization
+                                
+                                
+                                console.log(constVariable);
+                                const constVariable = 'Im a const';
+                                
+                                $=>
+                                Uncaught ReferenceError: can't access lexical declaration 'constVariable' before initialization
+                                
+
+                            </pre>
+
                             <figure>
                                 <img src="/img/blog/deadzonetitle.jpg" alt='Dead Zone Logo as representation of The Temporal Dead Zone'>
                                 <figcaption>Stephen King's infamous novel The Dead Zone as a reminder of the Temporal Dead Zone </figcaption>
@@ -321,8 +348,63 @@
                                 <img src="/img/blog/eclipse-panaromic.jpg" alt='Panorama of an elipse representing variable shadowing'>
                                 <figcaption>Panorama of eclipse as a visual representation of Variable Shadowing </figcaption>
                             </figure>
+                            <h2>Function Types</h2>
+                            <pre>
+                                // FUNCTION TYPES
+                                
+                                // function declaration
 
-                            <!--- insert the rest of the blog post here!        -->
+                                function manageTableTotals() {
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }
+
+                                // function expression(named)
+                                
+                                var manageTableTotals = function getPriceAndCount(){
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }
+                                
+                                // function expression(unnamed)
+
+                                var manageTableTotals = function(){
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }
+                                
+                                // anonymous function
+                                function(){
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }
+                                
+                                // arrow function
+                                var manageTableTotals = () => {
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }
+                                
+                                // immediately invoked function expression
+                                var addButtonListeners = (function() {
+                                    var numsArray = filterListForSelected(collectCheckedBoxes());
+                                    updateDOMTotalPrice(totalPrice(numsArray));
+                                    updateDOMItemCount(countItems(numsArray));
+                                    toggleTaxes(CACHE);
+                                }());
+
+                            </pre>
+                        
                             <br>
                             <h2>This, This, This or This</h2>
                             
@@ -339,12 +421,23 @@
                             <h3>THIS by Default</h3>
                             
                             <p>Starting from the bottom up, the default rule is in effect when none of the other cases apply to our call site. If our THIS instance is not using implicit or explicit binding, or the NEW constructor keyword, then the default THIS behavior will be determined by whether or not the CONTENTS of the function are running in strict mode. If strict mode has not been applied to our function then our THIS binding will refer to the global object. If our function IS running in strict mode then the global object becomes unavailable and the value of THIS is set to 'undefined';</p>
-                            
-                            ```
-                            code sample - use strict
-                            code sample - non use strict
-                            
-                            ```
+
+                            <pre>
+
+                                // default THIS 
+
+                                console.log(this);
+                                $=>
+                                Window
+                                
+
+                                'use strict';
+                                console.log(this);
+                                $=>
+                                undefined
+                                
+
+                            </pre>
                             
                             <h3>Implicitly THIS</h3>
                             <p>Implicit execution contexts are determined the same way the dot operator function call operated. When we call a function using the dot operator we look to the left of the dot to determine what object we are invoking the function on. In the case of implicit binding to the THIS keyword, we determine ownership of the execution context by investigating the call-site in the same way, in more complex cases where multiple properties are chained together only the last level, the final property is the determinant.</p>
@@ -357,8 +450,6 @@
                             
                             <h3>Explicitly THIS - Bind, Call and Apply</h3>
                             <p>THIS can be explicitly set to the object of our choice by using one of three popular methods bind(), call(), or apply().  Each of these important tools work similarly with slight variations in parameter expectations and return values. The first parameter passe into each of these functions will be the object we intend to explicitly set as our execution context. If you decide to pass in a primitive value (such a string or integer) instead the value will be auto-boxed to create the object parameter is the function expects. Autoboxing is when we pass a primitive data type like an integer or a string into a method that is expecting and object and it automatically 'wraps; our argument in an object for us.</p>
-                            
-                            Autoboxing syntax example
 
                             <p>These functions are useful when we want to create methods that can be used on different objects, they give us the control to specify what context we are binding the original method to, the initial arguments passed in to upon
                             invocation, and the option to create a brand new method bound to our object through hard bindings without mutating the original object or function.</p>
@@ -370,13 +461,140 @@
                             <p>The bind() method is a another close, relative of call() and apply(). It is also used to explicitly bind our THIS
                             context and the first parameter is again our intended object for execution context, and the following parameters are again a list of arguments we are passing to the function being invoked, but instead of being invoked immediately as with call() and apply(), a new function is created and returned with the provided parameters hard coded into the newly created function(aka as 'hard binding') the argument list while passed into the new function before any new arguments passed in at execution time.</p>
                             
-                            <pre></pre>
-                            explicit code sample
+                            <pre>
+
+                            /******************** apply() ************************/
+
+                            // object + array .apply()
+
+                            // First we define our function that we would like to
+                            // bind our apply() object to
+
+                            function printSalesMessage(price, item){
+                                var message1 = `Hello ${this.name}, that will be $${price} ${this.currency}.\n`;
+                                var message2 = `Will you be paying for you ${item} with ${this.paymentForm}?`;
+                                console.log(message1 + message2);
+                            }
+
+                            // Create the object that will be your THIS context
+                            // for the bind function apply()
+                            var user2 = { name: 'Josaia', currency: 'cad', paymentForm: 'PayPal'}
+
+
+                            // lets nest our argument array in a function so we know our .apply()
+                            // isn't just using lexical scope to reference these array values
+                            function returnParams(){
+                                var price = 2.34;
+                                var item = 'dive mask';
+                                return transactionDetails = [ price, item ];
+                            }
+                            var transactionDetails = returnParams();
+
+                            // Let's see that array
+                            console.log(transactionDetails);
+                            $=>
+                            [ 2.34, 'dive mask' ]
+                            
+
+                            // Now we will invoke apply() with our user object to bind as
+                            // our THIS context to as first parameter
+                            // and pass in remaining arguments array as our second parameter
+                            printSalesMessage.apply(user2, transactionDetails);
+
+                            $=>
+                            Hello Josaia, that will be $2.34 cad.
+                            Will you be paying for you dive mask with PayPal?
+                            
+
+                            /******************** call() ************************/
+
+                            // object + object .call()
+
+                            // First we define our function that we would like to
+                            // bind our call() object to
+
+                            function printSalesMessage(){
+                                var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+                                var message2 = `Will you be paying for your ${item.name} with ${this.paymentForm}?`;
+                                console.log(message1 + message2);
+                            }
+
+                            // create the object we are binding to for our THIS context
+                            var user1 = { name: 'Harleigh', currency: 'mxd', paymentForm: 'credit card'}
+
+                            // define multiple parameters
+                            var transaction = { price: 2.34 }
+                            var item = { name: 'dive mask' };
+
+                            // invoke the call() with our user object to bind to as first parameter
+                            // pass in remaining arguments
+                            printSalesMessage.call(user1, transaction, item); //call
+
+                            Hello Harleigh, that will be $2.34 mxd.
+                            Will you be paying for your dive mask with credit card?
+                            
+
+
+                            /******************** bind() ************************/
+
+                            // Here is our original function we will bind our user object to
+                            // and pass in transaction object
+
+                            function printSalesMessage(transaction){
+                                var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+                                var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
+                                console.log(message1 + message2);
+                            }
+
+                            // Create the object that will be your THIS context
+                            // for the bind function call()
+                            var user3 = { name: 'Katie', currency: 'usd', paymentForm: 'debit' };
+
+                            // Create the argument parameters you are passing with your bound object
+                            var transaction = { price: 2.34, item: 'dive mask' };
+
+                            // create a variable to store our new function
+                            // pass in object to bind to and function parameters
+
+                            var katieSaleMsg = printSalesMessage.bind(user3, transaction);
+
+                            // execute the newly created function
+
+                            katieSaleMsg();
+                            $=>
+                            Hello Katie, that will be $2.34 usd.
+                            Will you be paying for you dive mask with debit?
+                            
+                            </pre>
                             
                             <h3>A brand NEW THIS</h3>
                             <p>The easiest rule to identify is the use of the NEW constructor. The NEW keyword creates a new javascript object that THIS binds to for the duration of the constructor call. These will return our newly created objects automatically unless another return value has been specified.</p>
                             
-                            new code sample
+                            <pre>
+                                /******************** new THIS ************************/
+                                
+                                // using the new constructor with the THIS keyword
+                                // to specify context
+                                function User(name, currency, paymentForm) {
+                                    this.name = name;
+                                    this.currency = currency;
+                                    this.paymentForm = paymentForm;
+                                    
+                                    this.msg = function printSalesMessage(transaction){
+                                        var message1 = `Hello ${this.name}, that will be $${transaction.price} ${this.currency}.\n`;
+                                        var message2 = `Will you be paying for your ${transaction.item} with ${this.paymentForm}?`;
+                                        console.log(message1 + message2);
+                                    }
+                                }
+                                
+                                // create our object to bind THIS to using the new constructor
+                                var user1 = new User('Harleigh', 'mxd', 'credit card')
+                                
+                                // call a method on our new object bound to THIS
+                                var transaction1228 = {price: 2.34, item: 'dive mask'};
+                                user1.msg(transaction1228)
+
+                            </pre>
                             
                             <p>To review the order of rules determining precedence for our THIS binding from highest to lowest:</p>
                             <ol>
@@ -568,7 +786,7 @@
                             <p>Good luck on your journey. I hope I was able to clarify some of these topics for you. If you found this blog post
                             helpful please like it, or share it with other developers you think could benefit, and follow me on Dev.to or check out my online portfolio at <a href='http://www.harleighabel.com'>http://harleighabel.com</a></p>
 
-                            <p>The repository for the code samples were extracted from can be found <a href='https://www.youtube.com/watch?v=S64JOX8x_K8'>here!</a><br>
+                            <p>Some of the code samples that were included in this blogpost were extracted from my practice app, which can be found at this repo from can be found <a href='https://github.com/atxrenegade/grocery_list'>here!</a><br>
                             
                             A live demo of that application can be found <a href='https://www.joesgroceries.com'>here! </a>
                             <br><br>
