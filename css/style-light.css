@@ -44,7 +44,7 @@
     padding: 0;
     margin: 0;
     text-decoration: none !important;
-    list-style: none !important;
+    /* list-style: none !important; */
     outline: none !important;
 }
 
@@ -112,9 +112,10 @@ pre {
     
 }
 
-.blog_list {
+.blog-list {
     list-style-type: decimal;
     padding-right: 10px;
+    list-style: inside;
 }
 
 
