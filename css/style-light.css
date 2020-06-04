@@ -107,13 +107,14 @@ a:focus {
 pre {
     font-size: 1em;
     font-weight: bold;
-    color: #00A3E1;
+    color: .blog-list#00A3E1;
     background-color: black;
     
 }
 
-ol {
+.blog_list {
     list-style-type: decimal;
+    padding-right: 10px;
 }
 
 
