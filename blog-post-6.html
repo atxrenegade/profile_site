@@ -217,7 +217,6 @@
                             <p>Local scope is a reference to local accessibility to an object or variable. Local scopes are nested within the global scope and can be of either function scope or a block scope type. Variables and functions declared within our local scope will only be visible within this local container. Function scopes refer specifically to objects that are only accessible from the function level inwards and to the nested children of the current function scope.</p>
                             
                             <p>Block scopes were introduced in 2015 with the creation of Let and Const variable types. Though syntactically there are many cases that we use curly braces in our JS programs, these code blocks do not qualify as block scopes until a variable to be contained is declared within them. Object literals, function declarations, try...catch statements, and classes are a few examples of blocks that do not qualify as block scopes. It's important to remember never to define functions within blocks, because they will create unpredictable behavior that will vary across JS environments. Block scoping is useful for increasing code readability, narrowing our variable scopes, and reducing the potential for Temporal Dead Zone errors which we will explore shortly.</p><br>
-
                             <pre>
 
     // levels of scope
@@ -248,36 +247,61 @@
     
                             </pre><br>
                             
-                            <p>Less commonly familiar are implied scopes. Scopes that have been implicitly and created that may cause strange bugs and unexpected side effects if we are not aware of their creation. One implied scope to watch out for is the parameter scope created when when we use non simple parameters as function argument. Since default arguments classify as non-simple arguments we can unintentionally create a parameter scope nested between a function's parent scope and the function's inner scope which could lead to accidentally variable shadowing. Another potential implied scope is the nested scope created between by the name identifier of a function expression nested between function's inner scope and the expression's outer enclosing scope. It is important to be aware of how these implied scopes may be created to control
-                            any side effects they may have in our program.</p>
+                            <p>Less commonly familiar are implied scopes. Scopes that have been implicitly created that may cause strange bugs and unexpected side effects if we are not aware of their creation. One implied scope to watch out for is the parameter scope created when when we use non simple parameters as function arguments. Since default arguments classify as non-simple arguments we can unintentionally create a parameter scope nested between a function's parent scope and the function's inner scope which could lead to unexpected variable shadowing. Another potential implied scope is the nested scope created between by the name identifier of a function expression nested between function's inner scope and the expression's outer enclosing scope. It is important to be aware of how these implied scopes may be created to control any side effects they may have in our programs.</p>
                          
-                            <p>Now that have a clear understanding of when javascript determines scope, how to use different types of scopes and how different variable types behave we can start exploring how we can use these concepts to construct better programs.</p><br>
+                            <p>Now that have a clear understanding of when JavaScript determines scope, how to use different types of scope, and how different variable types behave, we can start exploring these concepts will help us construct better programs.</p><br>
                             <br>
                             <h2>Principle of Least Exposure</h2><br>
-                            <p>The Principle of Least Exposure(POLE) is a variation(or extension?)of the POLP principle (The principle of Least
-                            Privilege). It argues that function and variable access should be restricted to only to the parts of the program for which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available using functions, blocks and IIFE's (Immediately Invoked Function Expressions) resulting in greater program stability, reducing the chance of naming collisions, unintended dependency, or unexpected side effects.</p>
+                            <p>The Principle of Least Exposure(POLE) is a variation(or extension?)of the POLP principle (The principle of Least Privilege). It argues that function and variable access should be restricted to only to the parts of the program for which it is an absolute necessity to complete the work that that part, was designed to execute. Using encapsulation we can limit exposure creating better code organization, more secure programs, isolation of vulnerabilities, and easier updates. We implement the POLE principle by nesting our variables and functions in the smallest scope available. We use functions, blocks and IIFE's (Immediately Invoked Function Expressions) to narrow scope resulting in greater program stability, reducing the chance of naming collisions, unintended dependency, or unexpected side effects.</p>
                             
-                            <p>Since our quick journey into how the JS engine compiles and interprets our program, we know that scope is determined during the lexing phase of the compilation stage. We've reviewed what types of variables can be created, and what levels of scope are available. Now lets look at how our variable types determine what scope the compiler will create for our variables.</p>
+                            <p>Since our quick journey into how the JS engine compiles and interprets our program, we know that scope is determined during the lexing phase of the compilation stage. We've reviewed what types of variables that can be created, and what levels of scope are available. Now lets look at how our variable types determine what scope the compiler will create for our variables.</p>
                             <br><br>
                             <h2>Scope and Variable Types</h2><br>
 
                             <h3>Reintroducing Var</h3><br>
-                            <p>As a new js developer I was also steered away from the use of the var variable type, and really didn't understand it myself. I "knew" that it was labelled legacy code, the black sheep in the js family that insisted on creating
-                            unpredictable bugs through a behavior called "hoisting". Beyond that I didn't really understand it, and was instructed to stick with const for all variable instances with the occasional use of let. I personally found const to be unpredictable and deceiving, claiming to be immutable yet still alterable, so steering clear of the trickery and deceit of both const and var, I defaulted to seeming safe solution of the neutral let variable type for nearly every variable I declared. Gaining a better understand of how this variables work has completely changed how I use variable declarators but before we get into the behavioral differences, let's review them.</p>
+                            <p>As a new JS developer I was also steered away from the use of the Var variable type, and really didn't understand it myself. I "knew" that it was labelled legacy code, the black sheep in the JS family that insisted on creating unpredictable bugs through a behavior called "hoisting". Beyond that I didn't really understand it, and was instructed to stick with Const for all variable instances with the occasional use of let. I personally, found Const to be unpredictable and deceiving, claiming to be immutable yet still alterable, so steering clear of the trickery and deceit of both Const and Var, I defaulted to seeming safe solution of the neutral Let variable type for nearly every variable I declared. Gaining a better understand of how these variable types function has completely changed how and what variable declarators I use but before we get into the behavioral differences, let's review the basics.</p>
 
-                            <p>Let me re-introduce you to var perhaps you also got off on the wrong foot. Var was the original variable declarator, reliable and time tested, and up until ES6 were the only flavor of JS variable declarators came in. Var variables attach to the nearest function scope to create function scoped variables. Var is a visible differentiator from let and const in programs helping us separating function and block scoped variables from each other at a glance. Re-declaration of var within the same scope has zero effect, making it a useful variable as a semantic reminder when there is visible distance between our original var declaration and the variable assignment, or it's use in our code. Var is also the preferred variable for for global variables, and for declaring a variable inside a loop that also also needs to be accessed externally without creating a separation between declaration and use.</p><br>
+                            <p>Let me re-introduce you to Var perhaps you also got off on the wrong foot. Var was the original variable declarator, reliable and time tested, and up until ES6 was the only flavor of JS variable declarators came in. Var variables attach to the nearest function scope to create function scoped variables. Var is a visible differentiator from Let and Const in programs helping us visually separating function and block scoped variables from each other at a glance. Re-declaration of Var within the same scope has zero effect, making it a useful variable as a semantic reminder when there is a distance between our original Var declaration and the variable assignment. Var is also the preferred declarator for global variables, and for declaring a variable inside a loop that also also needs to be accessed externally without creating a separation between declaration and use. In short, we like Var. Var rocks. Var is not broken or dysfunctional. Var is specifically useful for declaring function-scoped variables.</p><br>
 
                             <h3>Reviewing Let </h3><br>
                             <p>The let keyword acts very similarly to var. Let is also used to declare mutable variables and attaches to the nearest block scope. Let was introduced with Const in ES6 prior to that block scoping in JS did not exist. On to Const.</p><br>
 
                             <h3>Downgrading Const</h3><br>
-                            <p>Const is reserved for declaring static variables and cannot be reassigned. Due to Const's inflexibility it is best used for variables like fixed strings, or numbers. Because const cannot be reassigned, it cannot be declared without assignment, attempting to do so will result in a Syntax Error. Like Let, Const is also a block scoped variable.</p><br>
+                            <p>Const is reserved for declaring static variables and cannot be reassigned. Due to Const's inflexibility it is best used for variables like fixed strings, or numbers. Because const cannot be reassigned, it cannot be declared without assignment, attempting to do so will result in a Syntax Error. Like Let, Const is also a block scoped variable.</p><br><br>
 
-                            <h3>Variable Behavior and the Dead Zone</h3><br>
+                            <h2>Hoisting and the Dead Zone</h2><br>
+                            
+                            <h3>What is hoisting?</h3><br>
+                            <p>HOISTING, another JS concept shrouded with mystery and confusion. The non programming definition of "hoisting" is simply the raising or elevating of one thing over another. In the JavaScript context, "hoisting" refers to the fact that all variable declarations are visible at the top of the scope they are declared in. So how does that reflect in our programs? Well, it depends on the variable type and this is where we observe behavioral differences between Var, Let and Const.</p>
+                            
+                            <p>There are three steps in the creation of a function or variable, these are declaration, initialization and value
+                            assignment. Since our identifiers are registered in the compilation phase our scopes have been predetermined and at runtime the engine already has already processed what our scope will be but still has not necessarily executed the lines of code determining these object values.</p>
+                            
+                            <p>Hoisting refers the to registration of a variable identifier at the top of the scope it is declared in. If we look back at how and when our js engines determine variable and function scope we will remember that the registration of variables occurs during compilation, and the value assignment occurs during the execution phase. After a JS object has been declared, it must be initialized before it can be used and assigned a value, otherwise it will result in error, or return a different
+                            value that we are expecting.</p>
+                            
+                            <p>Variables declared with the keyword Var will be registered, and immediately auto-initialized and assigned a default value of 'undefined'. This means they are available for immediate use in our programs, albeit they will not reflect our intended value until the engine reaches the line of code that contains our variable value assignment.</p>
+                            
+                            <p>If the variable is declared using Let or Const, the variable is registered, but NOT auto-initialized and NOT assigned a value until the value assignment line of code is reached. Even though the engine has mapped the scope for these variables attempting to use them before value assignment will throw an error. Unknowingly you have crossed into the DEAD ZONE! (♫♪♪ dah, dah, dah - morbid organ music playing ominously ♫♪♪).</p>
+                            
+                            <p>The TEMPORAL DEAD ZONE! (cackles and screams in the distance)</p>
+                            <br>
+                            
+                            <figure>
+                                <img src="/img/blog/deadzonetitle.jpg" alt='Dead Zone Logo as representation of The Temporal Dead Zone'>
+                                <figcaption>Stephen King's infamous novel The Dead Zone as a reminder of the Temporal Dead Zone(TDZ) </figcaption>
+                            </figure>
+                            <br>
+                            
+                            <h3>The TEMPORAL DEAD ZONE</h3><br>
+                            <p>What is the heck is the Temporal Dead Zone?<br> 
+                            In simplest terms the TDZ is the time period between a variable or function declaration and the when it is auto-initialized and available for use. To prevent Temporal Dead Zone errors we declare all variables at the top of their scope.</p>
 
+                            <br>
                             <pre>
 
-    // VARIABLE HOISTING 
+    // The effect of VARIABLE HOISTING when attempting use 
+    // an uninitialized variable
 
     console.log(varVariable);
     var varVariable = 'Im a var!';
@@ -302,13 +326,7 @@
 
                             </pre>
                             <br>
-                            <br>
-
-                            <figure>
-                                <img src="/img/blog/deadzonetitle.jpg" alt='Dead Zone Logo as representation of The Temporal Dead Zone'>
-                                <figcaption>Stephen King's infamous novel The Dead Zone as a reminder of the Temporal Dead Zone(TDZ) </figcaption>
-                            </figure>
-                            <br>
+                            <p>This fresh perspective on Var, and a clear understanding of hoisting has definitely opened my eyes to the logic and reasoning behind it's intended use and Var has become quickly become my preferred function scoped variable declarator.</p><br>
                         
                             <h3>Variable Shadowing</h3>
                             <br>
@@ -699,7 +717,7 @@
                            
                             <h2> ES Modules and the Module Pattern </h2>
                             <br>
-                            <p>In early days of web programming, when the internet still consisted of primarily static web pages, JS code was limited to single lines embedded in HTML to assemble web components. As it has slowly taken on a new role and expanded functionality to both front and back-end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our JS files expand in size breaking code down into modules allows us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces and smaller managable pieces. </p>
+                            <p>In early days of web programming, when the internet still consisted of primarily static web pages, JS code was limited to single lines embedded in HTML to assemble web components. As it has slowly taken on a new role and expanded functionality to both front and back-end development, and non-browser applications, javascript programs have increased in size and complexity, and with it the demand for a consistent load pattern for the use of multiple js files and resources within the same program. As our JS files expand in size breaking code down into modules allows us to organize our code into smaller modular pieces, making programs easier to read, scale, debug, reuse components, implement a separation of concerns, and honor the privilege of least exposure, by encapsulating variables and methods into public and private interfaces and smaller manageable pieces. </p>
                             <br>
                             
                             <h3> The Classic Module Pattern</h3><br>
@@ -956,6 +974,7 @@
                                     <!--Submit Button-->
                                     <div class="col-md-12">
                                         <button class="btn-main">Post Comment</button>
+                                        <br><br>
                                     </div>
                                 </div>
                             </form>
