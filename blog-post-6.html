@@ -113,7 +113,7 @@
 
                         <!--Blog Content Start-->
                         <div class="blog-content col-md-10 offset-md-1">
-                            <h2>Understanding JIT Comp, Scopes, Closures, Hoisting, Shadowing,<br> THIS & the Module Pattern</h2><br>
+                            <h2>Understanding JIT Comp, Scopes, Closures, Hoisting, Shadowing, THIS & the Module Pattern</h2><br>
                             32 min read<br>
                             #javascript #html5 #SPA #responsive #flatiron #webdev<br><br>
 
@@ -361,12 +361,81 @@
                             <p>I can't think of many reasons why you would want to intentionally use variable shadowing. It could be helpful during testing, making changes to legacy code or for concealing data from a public interface, but in general, its important to recognize to prevent unintentional shadowing. It makes far more sense to create a new variable with a different name if you are allocating a different value, name sharing is a bad practice unless you have a good reason for it.</p>
                             <br>
                             <figure>
-                                <img src="/img/blog/eclipse-panaromic.jpg" alt='Panorama of an elipse representing variable shadowing'>
+                                <img src="/img/blog/eclipse-panaromic.jpg" alt='Panorama of an eclipse representing variable shadowing'>
                                 <figcaption>Panorama of eclipse as a visual representation of variable shadowing </figcaption>
                             </figure>
                             <br>
                             <br>
-                            <h2>Function Types</h2><br>
+                            <h2>Function Types and Behaviors</h2><br>
+                            <p>Functions are named reusable code blocks that allow us to perform specific tasks multiple times throughout a program by invoking these code blocks by name. They allow us to break down our code by separation of concerns into manageable modular pieces, and encapsulate and conceal the data within them. There are several ways to declare and define functions, and different declaration types have subtle behavioral differences.</p><br>
+                            
+                            <h3>Function Declarations</h3><br>
+                            <p>Function declarations are the conventional method of declaring and defining a regular named function. They are
+                            constructed of the function keyword, a name for future reference and invocation, parentheses for any arguments to be passed in, and a set of curly braces to contain the code block. Similarly to Var variables functions declared with function declarations are immediately auto-initialized and assigned a value. Instead of being assigned a value of 'undefined' like in the case of Var declarations, the function is initialized with it's full function definition and available for immediate use at the top of the scope it is declared in, even before the engine reaches the function declaration within our code. Just like variable identifiers, function identifiers are also registered during compilation. ALL OTHER function types will have it's identifier registered as well, BUT will be auto-initialized to 'undefined' and WILL throw a typeError if we attempt to use them before the line of code that they have been declared and defined on.</p><br>
+                            
+                            <h3>Function Expressions</h3><br>
+                            
+                            <p>Function expressions are another common declaration form with several variations. Examples include: named expressions, unnamed expression and IIFEs. A function expression consists of a (usually) anonymous function definition assigned to a variable. The primary behavioral difference between a function expression and a function declaration is that the definition of these functions is not auto-initialized and they will act much like a Let or Const variable if referenced before the line in our code that includes the function definition. Function expressions can be explicitly named or the name can be inferred. Named function expressions are just function expressions that include a name identifier for the anonymous portion of the expression. Function expressions that rely on name inference often show up in stack traces as anonymous. Function expressions are invoked by calling the variable name.</p>
+                            
+                            <p>IIFEs, Immediately Invoked Function Expressions are exactly as they sound. They are (named or unnamed) function expressions that are immediately self invoked. IIFE's were used for data encapsulation and as part of the classic module format before built in modules were created. They can create a scope to hide variables and functions and be used encapsulate data. IIFE's are not recommended for use with scopes that contain BREAK, RETURN, CONTINUE or THIS keywords, because their use may alter function boundaries and meanings.</p><br>
+                            
+                            <h3>Anonymous Functions</h3><br>
+                            <p>Anonymous functions are any function declared without an identifier, arrow functions classify as anonymous functions as do unnamed function expressions. Without storing these functions in a variable we have no way to reference them, they do not show up in our stack traces with an identifiable name, and being nameless are incapable of self reference. Best practices steer us away from the use of anonymous functions, though they may save keystrokes in the short term, in the long run they can be vague and create confusion while debugging.</p><br>
+                            
+                            <h3>Arrow Functions</h3><br>
+                            <p>Arrow functions were the most popular feature introduced in ES6. My personal opinion, if you've ever noticed my function and variable names, is that I prefer clarity over shortcuts. When I first used arrow functions throughout my programs I did not like the lack of visible separation it created between variables and functions in my code. When I look at my programs I want it to be clear at GLANCE what type of JS object I am looking at and what task that line of code performs. Staring at a sea of commingled variables and arrow functions, in my opinion creates unnecessary visual noise.</p>
+                            <p>Arrow functions are always anonymous and inherit arguments from their parent scope. Many developers believe they were created as a shorthand for function declarations, but the true value of arrow functions is that they do not create their own THIS execution context and their binding will be inherited from the enclosing scope. They are an invaluable tool for replacing the use of <em>var self = this</em>, or <em>.bind(this).</em> They cannot override lexical bindings, EVEN when the NEW constructor is used. And lastly arrow functions can even serve as a great shorthand alternative for simple, inline functions like callbacks, timers, and event handlers.</p>
+                            
+                            <p>The syntax for arrow functions depends on the number of parameters and the length of your function statement. With a single function statement we can leave off the curly braces and the return value becomes implied. If we use only one argument in our function we can simplify our code even further by excluding the parentheses used in a standard function. Multi-line statements in arrow functions require the use of curly braces, and any time the curly braces are included the return value needs to be explicitly stated. If we use any quantity of OTHER than one (including zero) parentheses are needed for our argument parameters. Below are examples of quirky syntax variations for arrow functions.</p>
+                            <br>
+                            <pre>
+
+    // arrow function syntax
+
+    // no parameters simple single statement
+    // implicit return
+    var returnTotalNoParams = () => 'Your total is $3.67';
+    returnTotalNoParams();
+    $=>
+    'Your total is $3.67'
+    
+
+    // on parameter simple single statement
+    // implicit return
+    var returnTotalOneParam = price => `Your total is $${price}`;
+    returnTotalOneParam(4.23);
+    $=>
+    'Your total is $4.23'
+    
+
+    // two parameters simple single statement
+    // implicit return
+    var returnTotalTwoParams = (price, name) => `${name}, your total is $${price} `;
+    returnTotalTwoParams(5.87, 'Harleigh');
+    $=>
+    'Harleigh, your total is $5.87'
+    
+
+    // two parameters with curly braces
+    // explicit return
+    var returnTotalExpReturn = (price, name) => { return ('`${name}, your total is $${price} `;') };
+    returnTotalExpReturn(6.23, 'Harleigh')
+    $=>
+    'Your total is $6.23'
+    
+
+                                </pre>
+                                <br>
+                            
+                                <h3>Function Return Values - Implicit vs Explicit</h3><br>
+                                <p>The only time a JavaScript function implicitly returns a value is when the object created is returned using the NEW keyword constructor, or with the use of a single statement arrow function without curly braces. In all other cases return values MUST be explicitly expressed in our functions to return a value.</p><br>
+                            
+                                <h3>Function Hoisting </h3><br>
+                                <p>While using variables before their declarations in not a recommended practice, with functions that is not
+                                necessarily the case. Moving our executable code to the top of our scopes (below variable declarations) can create visual clarity and a visible separation
+                                between function calls and function definitions. We can quickly and easily identify what functions are being invoked and look for the definitions below if we need more clarification. Of course this only works for with functions that have been declared with a traditional function declarations. As we discussed the function definitions will be undefined for other function types before their definitions and will throw an error.</p>
+                            
+                                <p>Below I have included the same function refactored a number of times to display the syntax for each of the above described function formats.</p>
                             <br>
                             <pre>
                                
@@ -703,7 +772,7 @@
                             
                             <p>Quick review: outer function, nested inner function, variable passed from outer function to inner function to maintain state, inner function exposes variable through return statement, scope external to outer function accesses inner data and variables.</p> 
                                 
-                            <p>So now that we've explore closures understand lets move on to modules.</p>
+                            <p>So now that we've explored closures let's move on to modules.</p>
                             <br>
                             <br>
                             <figure>
