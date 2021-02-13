@@ -59,7 +59,7 @@
                 <div class="header-main" data-simplebar>
                     <div class="image-container">
                         <h2 class="header-name">Harleigh Abel</h2>
-                        <img src="img/Harleigh_Abel_picture.png" alt="Harleigh-Abel-profile-pic">
+                        <img src="img/Harleigh_Abel_picture.jpg" alt="Harleigh-Abel-profile-pic">
                     </div>
 
                     <!--Nav Menus-->
@@ -84,7 +84,7 @@
                         </ul>
                         <!--Copyright Text-->
                         <div class="copy">
-                            <p>2020 &copy; atxrenegade.<br>All Right Reserved.</p>
+                            <p>2021 &copy; atxrenegade.<br>All Right Reserved.</p>
                             <!-- Template credit to Cosmos-Themes -->
                         </div>
                     </div>
@@ -132,12 +132,12 @@
                             JavaScript, I was directed towards Kyle Simpson's infamous and invaluable series "You Don't Know JS" (specifically the
                             'Scope and Closures' volume). I highly recommend a thorough consumption of each of these books to any developer who plans to time working with the rapidly transforming language of JavaScript, for a solid grasp of some of these often misunderstood and miscommunicated concepts. I hope I can do it some justice in clarifying and communicating some of those concepts here.</p>
 
-                            <p>I am a full picture person, I retain details best when  an aerial view, a deep exploration of low level concepts. But this is the real world and in development we often don't get time for contemplation and review, so I savor it when I can. Here's my Reader Digest version of mulling over Kyle's book(3 x for good measure), and reclarifying thorough Stack Overflow posts, YouTube videos, Wikipedia, Medium, Dev.to, GitHub repos, and a dozen of other sources. Some of my specific misconceptions I was looking to clarify were hoisting, the use vs banishment of Var, closures, and the mystical JIT compilation process. Much of what I discovered contradicted what I had originally been taught, but these new arguments were backed with compelling logic from experienced developers and convincing code samples that altered the way I view and use JS now. So let's dive in.</p>
+                            <p>I am a full picture person, I retain details best when  an aerial view, a deep exploration of low level concepts. But this is the real world and in development we often don't get time for contemplation and review, so I savor it when I can. Here's my Reader Digest version of mulling over Kyle's book(3 x for good measure), and re-clarifying thorough Stack Overflow posts, YouTube videos, Wikipedia, Medium, Dev.to, GitHub repos, and a dozen of other sources. Some of my specific misconceptions I was looking to clarify were hoisting, the use vs banishment of Var, closures, and the mystical JIT compilation process. Much of what I discovered contradicted what I had originally been taught, but these new arguments were backed with compelling logic from experienced developers and convincing code samples that altered the way I view and use JS now. So let's dive in.</p>
                             <br><br>
                             <h2>Compiled vs Interpreted</h2><br>
                             <p>For machines to understand high level languages like JavaScript, the code must be translated or complied into to machine code. Compilation is a process in which the compiler converts higher level source code into a machine language executable file in a build step before runtime. Interpreted languages are translated at runtime line by line while the source code is converted to machine code during execution. There are arguments for and against each format. Compiled code is faster to execute because the build step occurs prior to runtime, the entire program has already been checked for errors and the work of converting to machine code is already complete. Interpreted code is more flexible to correct, it runs line by line, often displaying errors as they occur, and takes less memory.</p>
 
-                            <p>But why do we care? Isn't JavaScript an interpreted language? It was...in the beginning, but modern day JavaScript engines use a refined combination of compilation and interpretation commonly referred to as just-in-time compilation (aka JIT compilation).Understanding the way our code is processed during compilation and execution will help us get a clearer understanding of scopes, variables and their behaviors, and of when these objects are determined and available for use in our code. We can use this knowledge to replace memorization of misleading, incomplete, and outdated mental models. Remember these are highl level summaries of complex processes simplified for basic comprehension.</p>
+                            <p>But why do we care? Isn't JavaScript an interpreted language? It was...in the beginning, but modern day JavaScript engines use a refined combination of compilation and interpretation commonly referred to as just-in-time compilation (aka JIT compilation).Understanding the way our code is processed during compilation and execution will help us get a clearer understanding of scopes, variables and their behaviors, and of when these objects are determined and available for use in our code. We can use this knowledge to replace memorization of misleading, incomplete, and outdated mental models. Remember these are high level summaries of complex processes simplified for basic comprehension.</p>
                             <br><br>
                             <h2> JS Engine and the Runtime Environment</h2><br>
                             <p>There are two important components involved at runtime, the JavaScript engine, and the runtime environment that the
