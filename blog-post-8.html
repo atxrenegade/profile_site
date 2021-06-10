@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-random-animation="false" data-animation="36">
+    <head>
+				<!--Meta Tags-->
+				<meta charset="utf-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="keywords" content="Harleigh Abel, atxrenegade, full stack web developer, portfolio" />
+				<meta name="description" content="Digital Portfolio for Harleigh Abel /atxrenegade / Full Stack Web Developer " />
+
+				<!--Page Title-->
+				<title>Harleigh Abel - atxrenegade - Digital Portfolio - Full Stack Web Developer </title>
+
+        <!--Plugins Css-->
+        <link rel="stylesheet" href="css/plugins.css">
+        <!--Main Styles Css-->
+        <link rel="stylesheet" href="css/style-light.css">
+
+        <link rel="stylesheet" href="css/blue-color.css">
+
+        <script src="js/modernizr.js"></script>
+
+        <!--Favicons-->
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    </head>
+
+    <body>
+
+        <!--Preloader Start-->
+        <div class="preloader">
+            <div class="loader">
+                <h4>Harleigh Abel</h4>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!--Preloader End-->
+
+
+        <div id="page">
+
+            <!--Header Start-->
+            <header>
+                <div class="header-content">
+
+                    <!--Mobile Header-->
+                    <div class="header-mobile">
+                        <a class="header-toggle"><i class="fas fa-bars"></i></a>
+                        <h2>Harleigh Abel</h2>
+                    </div>
+
+                    <!--Main Header-->
+                    <div class="header-main" data-simplebar>
+                        <div class="image-container">
+                            <h2 class="header-name">Harleigh Abel</h2>
+                            <img src="img/Harleigh_Abel_picture.jpg" alt="Harleigh-Abel-profile-pic">
+                        </div>
+
+                        <!--Nav Menus-->
+                        <nav class="nav-menu">
+                            <ul>
+                                <li><a href="index.html#home"><span class="nav-menu-icon"><i class="lnr lnr-home"></i></span>Home </a> </li>
+                                <li><a href="index.html#about"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>About Me</a></li>
+                                <li><a href="index.html#portfolio"><span class="nav-menu-icon"><i class="lnr lnr-briefcase"></i></span>Portfolio</a></li>
+                                <li><a href="index.html#blog" class="active"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li>
+                                <li><a href="index.html#contact"><span class="nav-menu-icon"><i class="lnr lnr-envelope"></i></span>Contact</a></li>
+                            </ul>
+                        </nav>
+
+                        <!--Nav Footer-->
+                        <div class="nav-footer">
+                            <!--Social Links-->
+                            <ul class="social">
+                                <li><a href="https://github.com/atxrenegade"><i class="fab fa-github"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/harleigh-abel-8aaa1a64/"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="https://dev.to/atxrenegade"><i class="fab fa-dev"></i></a></li>
+                                <li><a href="https://www.youtube.com/playlist?list=PLV5GLSDMs4v_ZDV8TqSkQNIKYP8Qyk33d"><i class="fab fa-youtube-square"></i></a></li>
+                            </ul>
+                            <!--Copyright Text-->
+                            <div class="copy">
+                                <p>2021 &copy; atxrenegade.<br>All Right Reserved.</p>
+								<!-- Template credit to Cosmos-Themes -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!--Header End-->
+
+            <!--Main Start-->
+            <div id="main" class="site-main">
+                <div class="blog-page">
+                    <div class="blog-image">
+                        <img class='img-large' src='img/blog/blog_post_8/snowflakebaby1.png' alt='SnowflakeBaby Screenshot'>
+                    </div>
+                    <div class="blog-container">
+                        <div class="row">
+
+                            <!--Blog Heading Start-->
+                            <div class="blog-heading col-md-8 offset-md-2">
+                                <span class="cat">Software Development</span>
+                                <h2>Snowflake Baby - Developing a Membership Application in React/Redux</h2>
+                                <span class="blog-date"> June 2 2021</span>
+                            </div>
+
+                            <!--Blog Content Start-->
+                            <div class="blog-content col-md-10 offset-md-1">
+                                4 min read<br>
+                                #javascript #rails #react #redux #api #webdev<br><br>
+
+                                <h2>The Project</h2><br>
+                                <p>Since early in my coding career as a passionate entrepreneur I’ve wanted to construct a web application in the form of a basic membership site, an application that solves a matching problem, ie sellers to buyers, owners to guests, passengers to drivers. When I discovered the concept for SnowflakeBaby I felt inspired to build this application that solves the issue of matching embryo donors with recipients through a basic membership site model. In order not to bury myself in complicated features I decided that the MVP would focus on a three specific things, primarily the ability to sign up and create a donor or recipient profile, the ability to search and filter for matches, and basic messaging capability. The application would be include a React/Redux front end and a rails api backend.  Here are some of the challenges and lesson I encountered while constructing this application.</p>
+                                <br>
+
+                                <h2>Idiosyncrasies of JSX</h2><br>
+                                <p>When working with the React framework, one of the first skills to master is writing components in JSX. JSX is like a Javascript/HTML hybrid that is converted by Babel transpilers into conventional HTML and JS and bundled by Webpack before it is parsed by the browser. JSX has a few idiosyncrasies to remember along the way, since many of the Vanilla JS features we are used to maybe slightly modified or not available at all.</p><br>
+                                    
+                                <p><strong> is quick review of JSX deviations and syntactic requirements to remember:</strong></p>
+                                <ul>
+                                    <li>&bull; All JSX expressions must have only ONE outermost element.</li>
+                                    <li>&bull; Multi-line JSX expressions must be wrapped in parentheses</li>
+                                    <li>&bull; Curly Braces are used to embed javascript expressions in JSX expressions</li>
+                                    <li>&bull; JSX uses the keyword className as opposed to class in JS</li>
+                                    <li>&bull; JSX does not support if/else statements</li>
+                                    <li>&bull; Conditional are expressed in one of three ways: using ternary operators, an if statement outside of the JSX expression, of the && operator to create a boolean expression that will execute or return noting at all.</li>
+                                    <li>&bull; Event listener names are always camelCased</li>
+                                    <li>&bull; Event listener values are a function that can be declared inline or as variable with an optional event parameter.</li>
+                                    <li>&bull; Key attributes are used to uniquely identify individual elements, ie. as in lists of similar elements that need to be identified by the DOM for updating</li>
+                                </ul><br>
+
+                                <h2>Class Based Components vs Function Based Components</h2><br>
+                                <p>Javascript and web development in general is a rapidly evolving landscape and many of the common practices and design patterns have changed as new features have been introduced, React is no different. Initially the only way option for creating React components was to build a class based component with methods and constructor functions, but in React 16.8 new features and design patterns were introduced including the concept of function based components. While I was originally taught to use the class based design pattern, function components have become the preferred convention for react developers with many advantages to the original format.</p>
+
+                                <p>A functional component is regular JS function that acts as a react component. They advantages of a function components over..... </p><br>
+
+                               <h4>Advantage of Class Based Components</h4><br>
+                               <p>Although function components are light weight, and require less boilerplate code we do loosed the advantages of th.....</p><br>
+
+
+                                <h4>Converting a Class Based Component to Function Component</h4><br>
+                                <p>I believe one of the best ways to visualize and understand the differences between class-based components and function components is convert one to the other. Let's walk through the steps required to do that conversion.</p><br>
+
+                                    <p><strong>To convert a class based component to a functional component:</strong></p>
+                                    <ol style='list-style-type:decimal;'>
+                                        <li>1. Change the class declaration to a function declaration</li>
+                                        <li>2. Remove the render keyword from the final code block, keep the return statement and ensure that it is the last method</li>
+                                        <li>3. Change all methods to arrow functions</li>
+                                        <li>4. Delete all instances of the THIS keyword</li>
+                                        <li>5. Remove the constructor method and replace it with a useState() hook</li>
+                                        <li>6. Remove any event handler bindings</li>
+                                        <li>7. Replace lifecycle methods with useEffect() hooks</li>
+                                    </ol>
+
+                                <p>Once you have completed the steps above your component will have transformed from this class based component:</p><br>
+                                <pre>Code sample of a class based component</pre>
+                                    
+                                <p>To this function Component:</p><br>
+                                <pre>Code sample of a function based component</pre>
+                                    
+                                <h4>LifeCycle Methods vs React Hooks</h4>
+                                <p>When function components were originally introduced they did not work with lifecycle methods such as componentDidMount(), or componentDidUpdate() and there was no way to hook our component functions into the lifecycle of a component. React hooks were introduced in React 16.8 to give developers the same functionality and ease of that class-based components provide.</p>
+
+                                <h4>What are React Hooks?</h4> 
+                                <p>As state above and in the React Documentation: "hooks are functions that let you hook into React and lifecycle features from a function component". Because class-based components are dependant on life cycle methods with stateful logic they can be hard to break up into separation of concerns. Now with React hooks we have the ability to create smaller stateful components and ....</p><br>
+
+                                <h4>UseState()</h4><br><p></p>
+
+
+                                <h4>UseEffect()</h4><br></p> 
+                                
+                                <h4>Differences Between UseEffect() and Lifecycle Methods</h4><br>
+                                <p>It is important to understand when transitioning from lifecycle methods to the useEffect hook that the conversion is not absolute. There are small variances to be aware of when using one to replace the other. Unlike componentDidMount(), useEffect() executes after the DOM has been rendered which could lead to visible content flicker if you need to read from the DOM and synchronously set state to create the new UI. The work around in this case is to use the layoutEffect() function which is executes with the same timing and the previous lifecycle method componentDidMount(). </p>
+
+                                <p>Another potential oversight, to be aware of, is the fact that useEffect() will 'capture' values in the effect function through the use of closure, while the ComponentDidMount does not create closure and will just read the current value. If your effect depends on a value, make sure that it is included in your useEffect() dependency array to keep these captured values current and accurate.</p><br>   
+
+                                <h2>Debugging Nested JSON objects</h2><br>
+                                <p>One of the most frustrating challenges I encountered was an issue with the JSON objects I was returning from my API. No matter what I did I could not seem to access nested object values. It was pretty clear to me what syntax combination of array indexes and object keys should have returned that values I was trying to retrieve but I still wasn't able to access them. After a few frustrating days of returning to the problem I discovered that the issue was I had double encoded nested objects within my api JSON objects, but using a combination of the to_json method in my controllers and active_model serializers. I was able to resolve this by removing some unnecessary serializers, and parsing nested objects a second time.</p>
+
+                                <p>I found very little documentation regarding active model serializers and noticed it had all references had been dropped from Flatiron material, and Fast JSON seems to have become a popular replacement.</p><br>
+
+                                <h2>Application Architecture</h2><br>
+
+                                <figure>
+                                    <img class='img-small' src='/img/blog/blog_post_8/application_architecture.png'>
+                                </figure>
+
+                                <p>Application architecture, and design patterns is another area I would like to explore further in React/Redux. While I'm very comfortable with MVC architecture for the back end api, and I used traditional React design patterns such and parent container components passing props to child presentational components, I feel like the end result was a multitude of
+                                components that could possible be reduced to simplify and condense the finished product.</p><br>
+                                
+                                <p>As with the construction of every new application I build from scratch there were to many lessons to include here but I’ve included some of the notable concepts.</p>
+
+                                <p>The repo for the React.js frontend can be found <a href='https://github.com/atxrenegade/membership_react_frontend'>here! </a><br>
+                                The repo for the Rails API can be found <a href='https://github.com/atxrenegade/membership_api'>here! </a></p>
+
+                                </p><a href='https://github.com/atxrenegade'>atxrenegade/Harleigh Abel</a></p><br>
+                            </div>
+
+                            <!--Blog Content End-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				<!--Font-Awesome--Icons-->
+				<script src="https://kit.fontawesome.com/f15082b4a8.js" crossorigin="anonymous"></script>
+        <!--Jquery JS-->
+        <script src="js/jquery.min.js"></script>
+        <!--Plugins JS-->
+        <script src="js/plugins.min.js"></script>
+        <!--Site Main JS-->
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
