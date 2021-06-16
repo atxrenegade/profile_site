@@ -111,7 +111,7 @@
 
                             <!--Blog Content Start-->
                             <div class="blog-content col-md-10 offset-md-1">
-                                4 min read<br>
+                                7 min read<br>
                                 #javascript #rails #react #redux #api #webdev<br><br>
 
                                 <h2>The Project</h2><br>
@@ -137,16 +137,15 @@
                                 <h2>Class Based Components vs Function Based Components</h2><br>
                                 <p>Javascript and web development in general is a rapidly evolving landscape and many of the common practices and design patterns have changed as new features have been introduced, React is no different. Initially the only way option for creating React components was to build a class based component with methods and constructor functions, but in React 16.8 new features and design patterns were introduced including the concept of function based components. While I was originally taught to use the class based design pattern, function components have become the preferred convention for react developers with many advantages to the original format.</p>
 
-                                <p>A functional component is regular JS function that acts as a react component. They advantages of a function components over..... </p><br>
+                                <p>A function component is regular JS function that acts as a React component. There are many advantages to using function components over the former format. Function components are lightweight, simpler, easier to read, they follow best practices of separation of concerns, they use less memory, less system resources. Function components are written in regular javascript and supported across all browsers. The React team has also indicated that there will be future enhanced performance benefits to using this component format.</p><br>
 
                                <h4>Advantage of Class Based Components</h4><br>
-                               <p>Although function components are light weight, and require less boilerplate code we do loosed the advantages of th.....</p><br>
-
+                               <p>Although function components are light weight, simpler and require less boilerplate code, we do loose the advantages of having access the to React Component library that class based components inherit from. Additionally React references aka 'refs' can not be accessed from function components, and the timing of a React hooks execution maybe slightly different than what we expecting from a lifecycle methods. And finally, it's important to note that class based components use 'strict-mode' which may help us identify silent errors.</p><br>
 
                                 <h4>Converting a Class Based Component to Function Component</h4><br>
                                 <p>I believe one of the best ways to visualize and understand the differences between class-based components and function components is convert one to the other. Let's walk through the steps required to do that conversion.</p><br>
 
-                                    <p><strong>To convert a class based component to a functional component:</strong></p>
+                                    <p><strong>To convert a class based component to a function component:</strong></p>
                                     <ol style='list-style-type:decimal;'>
                                         <li>1. Change the class declaration to a function declaration</li>
                                         <li>2. Remove the render keyword from the final code block, keep the return statement and ensure that it is the last method</li>
@@ -157,32 +156,39 @@
                                         <li>7. Replace lifecycle methods with useEffect() hooks</li>
                                     </ol>
 
-                                <p>Once you have completed the steps above your component will have transformed from this class based component:</p><br>
-                                <pre>Code sample of a class based component</pre>
+                                <p>Once you have completed the steps above your component will have transformed from this class based component:</p>
+                                <img src="/img/blog/blog_post_8/sampleCode1.png" alt="class based component code sample" />
+                                <br><br><br>
                                     
-                                <p>To this function Component:</p><br>
-                                <pre>Code sample of a function based component</pre>
+                                <p>To this function component:</p>
+                                <img src="/img/blog/blog_post_8/sampleCode2.png" alt="function component code sample" />
+                                <br><br><br>
                                     
-                                <h4>LifeCycle Methods vs React Hooks</h4>
-                                <p>When function components were originally introduced they did not work with lifecycle methods such as componentDidMount(), or componentDidUpdate() and there was no way to hook our component functions into the lifecycle of a component. React hooks were introduced in React 16.8 to give developers the same functionality and ease of that class-based components provide.</p>
+                                <h4>LifeCycle Methods vs React Hooks</h4><br>
+                                <p>When function components were originally introduced they did not work with lifecycle methods such as componentDidMount(), or componentDidUpdate() and there was no way to hook our component functions into the lifecycle of a component. React hooks were introduced in React 16.8 to give developers the same functionality and ease of that class-based components provide.</p><br>
 
-                                <h4>What are React Hooks?</h4> 
-                                <p>As state above and in the React Documentation: "hooks are functions that let you hook into React and lifecycle features from a function component". Because class-based components are dependant on life cycle methods with stateful logic they can be hard to break up into separation of concerns. Now with React hooks we have the ability to create smaller stateful components and ....</p><br>
+                                <h4>What are React Hooks?</h4><br> 
+                                <p>As state above and in the React Documentation: "hooks are functions that let you hook into React and lifecycle features from a function component". Because class-based components are dependant on life cycle methods with stateful logic they can be hard to break up into separation of concerns. Now with React hooks we have the ability to create smaller stateful components broken down by separation of concerns.  The two most essential and commonly used hooks are useState and useEffect.</p><br>
 
-                                <h4>UseState()</h4><br><p></p>
+                                <h4>useState()</h4><br>
+                                <p>The useState function is how we add state to our function components. To use this function we import it from the React library without import statement.  Then a state variable and set and initial value. When we call the useState function it will return the current state value and the function to update it.</p><br>
 
+                                <h4>useEffect()</h4><br>
+                                <p>The useEffect function was created to allow sideEffects within a component. Prior to the creation of useEffect, React developers relied on lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount().  componentDidMount() was called as soon as the component was mounted and this is where React developers would place
+                                initiate their API calls. componentDidUpdate() was called when any state changes where made and used to update the DOM to reflect these changes.
+                                componentWillUnmount(), another commonly used lifecycle method in class based components is called right before a component is destroyed and the DOM is cleared or reset, it is used to remove any event listeners, cancel subscriptions and clean up any tasks that may need to be resolved before a component is destroyed. Now lets see how we accomplish the same results by using useEffect().</p> 
 
-                                <h4>UseEffect()</h4><br></p> 
+                                <p>To mimick the effects of the lifecycle method componentDidMount() in our function component and execute useEffect() only after our component has mounted, we make our useEffect() function call with an empty array for the second argument.  To use useEffect() similarly to componentDidUpdate() we chain a useEffect() call with an array, and a second useEffect() call with the dependency you want to use as a field hook.  To make use of useEffect() as componentWillUnmount(), return a useEffect() with an empty dependency array. Don’t forget, when using useEffect() to add an empty function call for cleanup. This will prevent setting state on unmounted components, and clear stale state values when the user changes.</p><br>
                                 
-                                <h4>Differences Between UseEffect() and Lifecycle Methods</h4><br>
+                                <h4>Differences Between useEffect() and Lifecycle Methods</h4><br>
                                 <p>It is important to understand when transitioning from lifecycle methods to the useEffect hook that the conversion is not absolute. There are small variances to be aware of when using one to replace the other. Unlike componentDidMount(), useEffect() executes after the DOM has been rendered which could lead to visible content flicker if you need to read from the DOM and synchronously set state to create the new UI. The work around in this case is to use the layoutEffect() function which is executes with the same timing and the previous lifecycle method componentDidMount(). </p>
 
-                                <p>Another potential oversight, to be aware of, is the fact that useEffect() will 'capture' values in the effect function through the use of closure, while the ComponentDidMount does not create closure and will just read the current value. If your effect depends on a value, make sure that it is included in your useEffect() dependency array to keep these captured values current and accurate.</p><br>   
+                                <p>Another potential oversight, to be aware of, is the fact that useEffect() will 'capture' values in the effect function through the use of closure, while the ComponentDidMount does not create closure and will just read the current value. If your effect depends on a value, make sure that it is included in your useEffect() dependency array to keep these captured values current and accurate. Don't forget to include a clean up function to prevent stale values, or setting set on unmounted components.</p><br>   
 
                                 <h2>Debugging Nested JSON objects</h2><br>
                                 <p>One of the most frustrating challenges I encountered was an issue with the JSON objects I was returning from my API. No matter what I did I could not seem to access nested object values. It was pretty clear to me what syntax combination of array indexes and object keys should have returned that values I was trying to retrieve but I still wasn't able to access them. After a few frustrating days of returning to the problem I discovered that the issue was I had double encoded nested objects within my api JSON objects, but using a combination of the to_json method in my controllers and active_model serializers. I was able to resolve this by removing some unnecessary serializers, and parsing nested objects a second time.</p>
 
-                                <p>I found very little documentation regarding active model serializers and noticed it had all references had been dropped from Flatiron material, and Fast JSON seems to have become a popular replacement.</p><br>
+                                <p>I found very little documentation regarding active model serializers, and observed Fast JSON seems to have become a popular replacement.</p><br>
 
                                 <h2>Application Architecture</h2><br>
 
